@@ -1,2 +1,4 @@
 /src/main/resources/npc_pch.txt
 /src/main/resources/npcpos.txt
+/target/
+/.idea/
