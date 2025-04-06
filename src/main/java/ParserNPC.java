@@ -52,7 +52,9 @@ public class ParserNPC {
                         }
                         else arrNpc_Pos = null;
 
+                        if (arrNpc_Pos != null){
                         Npc_Pos.addAll(Arrays.asList(arrNpc_Pos));
+                        }
 
                         String totalStr = (arrNpc_begin[3].replaceAll("[^0-9]",""));
                         total = Integer.parseInt(totalStr);
