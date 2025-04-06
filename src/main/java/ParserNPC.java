@@ -81,7 +81,7 @@ public class ParserNPC {
                     if (str.startsWith("npcmaker_end")){break;}
                 }
 
-             if (Npc_Pos.size() != 0) {
+             if (!Npc_Pos.isEmpty()) {
                  int cout = 0;
                  int npcCoord = 0;
                  for (int i = 0; i < Npc_Pos.size(); i+=4) {
