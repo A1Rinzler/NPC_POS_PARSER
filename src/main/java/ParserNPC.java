@@ -1,5 +1,6 @@
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,8 +9,8 @@ import java.util.List;
 // respawn_random="0" period_of_day="none"
 
 public class ParserNPC {
-     final String npcpos_file = "src/main/resources/npcpos.txt";
-    private final Charset charset = Charset.forName("UTF-16LE");
+    final String npcpos_file = "src/main/resources/npcpos.txt";
+    //private final Charset charset = Charset.forName("UTF-16LE");
     GetNPC_Id getNPCId = new GetNPC_Id();
 
 
@@ -19,7 +20,7 @@ public class ParserNPC {
         List<String> Npc_Pos = new ArrayList<>();
 
          try {
-             BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream(npcpos_file), charset));
+             BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream(npcpos_file), StandardCharsets.UTF_16LE));
              String str;
              int npc_id = 0;
              String[] arrTerritory;
