@@ -41,45 +41,53 @@ public class ParserNPC {
 
                          arrTerritory = coordTerritory.replaceAll("[{}]", "").split(";"); //координаты Anywhere
 
-                    } else if (str.startsWith("npcmaker_begin")) {
+                    }
+                    if (str.startsWith("npcmaker_begin")) {
                         String[] arrNpcmaker_begin = str.split("\t");
 
+                        String nextLine;
+                        while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_end")){
 
+                        if (nextLine.startsWith("npc_begin")) {
 
-                    } else if (str.startsWith("npc_begin")) {
-                        String[] arrNpc_begin = str.split("\t");
-                        npc_Name = arrNpc_begin[1].replace("[","").replace("]","").trim();
-                        npc_id = getNPCId.getNPC_Id(arrNpc_begin[1]);
+                            String[] arrNpc_begin = nextLine.split("\t");
+                            npc_Name = arrNpc_begin[1].replace("[","").replace("]","").trim();
+                            npc_id = getNPCId.getNPC_Id(arrNpc_begin[1]);
 
-                        String[] splitPos = arrNpc_begin[2].split("=");
+                            String[] splitPos = arrNpc_begin[2].split("=");
 
-                        if (!splitPos[1].equals("anywhere")){
-                            arrNpc_Pos = splitPos[1].replaceAll("[{}]", "").split(";");
+                            if (!splitPos[1].equals("anywhere")){
+                                arrNpc_Pos = splitPos[1].replaceAll("[{}]", "").split(";");
+                            }
+                            else arrNpc_Pos = null;
+
+                            if (arrNpc_Pos != null){
+                                Npc_Pos.addAll(Arrays.asList(arrNpc_Pos));
+                            }
+
+                            String totalStr = (arrNpc_begin[3].replaceAll("[^0-9]",""));
+                            total = Integer.parseInt(totalStr);
+
+                            if (arrNpc_begin[4].contains("hour")){
+                                respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]","")) * 3600;
+                            } else if (arrNpc_begin[4].contains("min")){
+                                respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]","")) * 3600;
+                            } else respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]",""));
+
                         }
-                        else arrNpc_Pos = null;
 
-                        if (arrNpc_Pos != null){
-                        Npc_Pos.addAll(Arrays.asList(arrNpc_Pos));
                         }
+                        if (nextLine.startsWith("npcmaker_end")){
+                            outPattern();
+                            if (countEnd == 0){
+                                break;
+                            }
+                            countEnd++;
 
-                        String totalStr = (arrNpc_begin[3].replaceAll("[^0-9]",""));
-                        total = Integer.parseInt(totalStr);
-
-                        if (arrNpc_begin[4].contains("hour")){
-                            String respawnTimeStr = (arrNpc_begin[4].replaceAll("[^0-9]",""));
-                            respawnTime = Integer.parseInt(respawnTimeStr) * 60;
                         }
-                        else respawnTime = Integer.parseInt(arrNpc_begin[4]);
 
                     }
-                    if (str.startsWith("npcmaker_end")){
-                        outPattern();
-                        if (countEnd == 0){
-                            break;
-                        }
-                        countEnd++;
 
-                    }
                 }
 
                 bufferedReader.close();
