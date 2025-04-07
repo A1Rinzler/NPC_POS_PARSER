@@ -29,7 +29,6 @@ public class ParserNPC {
              BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream(npcpos_file), StandardCharsets.UTF_16LE));
              String str;
              String[] arrTerritory;
-             String[] arrNpc_Pos;
 
                 while ((str = bufferedReader.readLine()) !=null  ) {
                     if (str.startsWith("territory_begin")) {
@@ -44,38 +43,12 @@ public class ParserNPC {
                     }
                     if (str.startsWith("npcmaker_begin")) {
                         String[] arrNpcmaker_begin = str.split("\t");
-
                         String nextLine;
                         while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_end")){
 
-                        if (nextLine.startsWith("npc_begin")) {
-
-                            String[] arrNpc_begin = nextLine.split("\t");
-                            npc_Name = arrNpc_begin[1].replace("[","").replace("]","").trim();
-                            npc_id = getNPCId.getNPC_Id(arrNpc_begin[1]);
-
-                            String[] splitPos = arrNpc_begin[2].split("=");
-
-                            if (!splitPos[1].equals("anywhere")){
-                                arrNpc_Pos = splitPos[1].replaceAll("[{}]", "").split(";");
-                            }
-                            else arrNpc_Pos = null;
-
-                            if (arrNpc_Pos != null){
-                                Npc_Pos.addAll(Arrays.asList(arrNpc_Pos));
-                            }
-
-                            String totalStr = (arrNpc_begin[3].replaceAll("[^0-9]",""));
-                            total = Integer.parseInt(totalStr);
-
-                            if (arrNpc_begin[4].contains("hour")){
-                                respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]","")) * 3600;
-                            } else if (arrNpc_begin[4].contains("min")){
-                                respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]","")) * 3600;
-                            } else respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]",""));
-
-                        }
-
+                            if (nextLine.startsWith("npc_begin")) {
+                                parseDataLine(nextLine);
+                           }
                         }
                         if (nextLine.startsWith("npcmaker_end")){
                             outPattern();
@@ -83,9 +56,10 @@ public class ParserNPC {
                                 break;
                             }
                             countEnd++;
-
                         }
 
+                    } else if (str.startsWith("npcmaker_ex_begin")) {
+                        System.out.println("yahoo");
                     }
 
                 }
@@ -98,22 +72,39 @@ public class ParserNPC {
              throw new RuntimeException(e);
          }
      }
-                /*  <spawn count="1" respawn="60" respawn_random="0" period_of_day="none">
-		                <territory>
-		                	<add x="47995" y="127717" zmin="-3767" zmax="-2967" />
-		                	<add x="48579" y="129316" zmin="-3767" zmax="-2967" />
-		                	<add x="50391" y="129435" zmin="-3767" zmax="-2967" />
-		                	<add x="49791" y="127264" zmin="-3767" zmax="-2967" />
-		                </territory>
-		              <npc id="20063" /><!--Ol Mahum Shooter-->
-	                </spawn> */
+
+        void parseDataLine(String nextLine){
+            String[] arrNpc_Pos;
+
+            String[] arrNpc_begin = nextLine.split("\t");
+            npc_Name = arrNpc_begin[1].replace("[","").replace("]","").trim();
+            npc_id = getNPCId.getNPC_Id(arrNpc_begin[1]);
+
+            String[] splitPos = arrNpc_begin[2].split("=");
+
+            if (!splitPos[1].equals("anywhere")){
+                arrNpc_Pos = splitPos[1].replaceAll("[{}]", "").split(";");
+            }
+            else arrNpc_Pos = null;
+
+            if (arrNpc_Pos != null){
+                Npc_Pos.addAll(Arrays.asList(arrNpc_Pos));
+            }
+
+            String totalStr = (arrNpc_begin[3].replaceAll("[^0-9]",""));
+            total = Integer.parseInt(totalStr);
+
+            if (arrNpc_begin[4].contains("hour")){
+                respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]","")) * 3600;
+            } else if (arrNpc_begin[4].contains("min")){
+                respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]","")) * 3600;
+            } else respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]",""));
+        }
 
      void outPattern(){
          if (!Npc_Pos.isEmpty()) {
-             //int cout = 0;
              int npcCoord = 0;
              for (int i = 0; i < Npc_Pos.size(); i+=4) {
-                 //for (int j = 0; j < 4 ; j++) {
                  npcStringBuffer.append("<spawn count=\"").append(total)
                          .append("\" respawn=\"").append(respawnTime).append("\" respawn_random=\"0\" period_of_day=\"none\">")
                          .append("\n")
@@ -127,21 +118,8 @@ public class ParserNPC {
                          .append("\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
                          .append("\n")
                          .append("</spawn>\n\n");
-//                     cout++;
-
-//                     System.out.println(cout);
-//
-//                     System.out.print("npc_id " + npc_id);
-//                     System.out.print(" x = " + Npc_Pos.get(npcCoord++));
-//                     System.out.print(" y = " + Npc_Pos.get(npcCoord++));
-//                     System.out.print(" zmin = " + Npc_Pos.get(npcCoord++));
-//                     System.out.print(" zmax = " + Npc_Pos.get(npcCoord++));
-//                     System.out.println(" total = " + total + " respawnTime = " + respawnTime);
-                 //}
              }
              System.out.print(npcStringBuffer);
-
-
          }
      }
 }
