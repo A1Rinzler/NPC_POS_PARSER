@@ -12,23 +12,25 @@ public class ParserNPC {
     final String npcpos_file = "src/main/resources/npcpos.txt";
     //private final Charset charset = Charset.forName("UTF-16LE");
     GetNPC_Id getNPCId = new GetNPC_Id();
+    List<String> Npc_Pos = new ArrayList<>();
+    StringBuffer npcStringBuffer = new StringBuffer();
+    //List<String> territory = new ArrayList<>();
+    int respawnTime = 0;
+    int total = 0;
+    int npc_id = 0;
+    String npc_Name = null;
+
+    int countEnd = 0;
 
 
      void parse(){
         getNPCId.getAllNPCID();
-        StringBuffer npcStringBuffer = new StringBuffer();
-        List<String> Npc_Pos = new ArrayList<>();
-
          try {
              BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream(npcpos_file), StandardCharsets.UTF_16LE));
              String str;
-             int npc_id = 0;
              String[] arrTerritory;
              String[] arrNpc_Pos;
-             int respawnTime = 0;
-             int total = 0;
-             String npc_Name = null;
-             //List<String> territory = new ArrayList<>();
+
                 while ((str = bufferedReader.readLine()) !=null  ) {
                     if (str.startsWith("territory_begin")) {
                         String[] arrTerritory_begin = str.split("\t");
@@ -41,6 +43,9 @@ public class ParserNPC {
 
                     } else if (str.startsWith("npcmaker_begin")) {
                         String[] arrNpcmaker_begin = str.split("\t");
+
+
+
                     } else if (str.startsWith("npc_begin")) {
                         String[] arrNpc_begin = str.split("\t");
                         npc_Name = arrNpc_begin[1].replace("[","").replace("]","").trim();
@@ -67,8 +72,25 @@ public class ParserNPC {
                         else respawnTime = Integer.parseInt(arrNpc_begin[4]);
 
                     }
-                    /*
-                    <spawn count="1" respawn="60" respawn_random="0" period_of_day="none">
+                    if (str.startsWith("npcmaker_end")){
+                        outPattern();
+                        if (countEnd == 0){
+                            break;
+                        }
+                        countEnd++;
+
+                    }
+                }
+
+                bufferedReader.close();
+         } catch (FileNotFoundException e) {
+             System.out.println("npcpos.txt not found");
+             //throw new RuntimeException(e);
+         } catch (IOException e) {
+             throw new RuntimeException(e);
+         }
+     }
+                /*  <spawn count="1" respawn="60" respawn_random="0" period_of_day="none">
 		                <territory>
 		                	<add x="47995" y="127717" zmin="-3767" zmax="-2967" />
 		                	<add x="48579" y="129316" zmin="-3767" zmax="-2967" />
@@ -76,39 +98,27 @@ public class ParserNPC {
 		                	<add x="49791" y="127264" zmin="-3767" zmax="-2967" />
 		                </territory>
 		              <npc id="20063" /><!--Ol Mahum Shooter-->
-	                </spawn>
-                     */
+	                </spawn> */
 
-                    if (str.startsWith("npcmaker_end")){break;}
-                }
-
-             if (!Npc_Pos.isEmpty()) {
-                 int cout = 0;
-                 int npcCoord = 0;
-                 for (int i = 0; i < Npc_Pos.size(); i+=4) {
-                     //for (int j = 0; j < 4 ; j++) {
-                                npcStringBuffer.append("<spawn count=\"").append(total)
-                                        .append("\" respawn=\"")
-                                        .append(respawnTime)
-                                        .append("\" respawn_random=\"0\" period_of_day=\"none\">")
-                                        .append("\n")
-                                        .append("\t\t <territory>").append("\n")
-                                        .append("\t\t\t")
-                                        .append("<add x=\"")
-                                        .append(Npc_Pos.get(npcCoord++))
-                                        .append("\" y=\"")
-                                        .append(Npc_Pos.get(npcCoord++))
-                                        .append("\" zmin=\"")
-                                        .append(Npc_Pos.get(npcCoord++))
-                                        .append("\" zmax=\"")
-                                        .append(Npc_Pos.get(npcCoord++))
-                                        .append("\" />")
-                                        .append("\n").append("\t\t")
-                                        .append("</territory>").append("\n")
-                                        .append("\t")
-                                        .append("<npc id=\"")
-                                        .append(npc_id).append("\" /><!--")
-                                        .append(npc_Name).append("-->").append("\n").append("</spawn>").append("\n\n");
+     void outPattern(){
+         if (!Npc_Pos.isEmpty()) {
+             //int cout = 0;
+             int npcCoord = 0;
+             for (int i = 0; i < Npc_Pos.size(); i+=4) {
+                 //for (int j = 0; j < 4 ; j++) {
+                 npcStringBuffer.append("<spawn count=\"").append(total)
+                         .append("\" respawn=\"").append(respawnTime).append("\" respawn_random=\"0\" period_of_day=\"none\">")
+                         .append("\n")
+                         .append("\t\t <territory>")
+                         .append("\n")
+                         .append("\t\t\t").append("<add x=\"").append(Npc_Pos.get(npcCoord++)).append("\" y=\"").append(Npc_Pos.get(npcCoord++)).append("\" zmin=\"")
+                         .append(Npc_Pos.get(npcCoord++)).append("\" zmax=\"").append(Npc_Pos.get(npcCoord++)).append("\" />")
+                         .append("\n")
+                         .append("\t\t</territory>")
+                         .append("\n")
+                         .append("\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
+                         .append("\n")
+                         .append("</spawn>\n\n");
 //                     cout++;
 
 //                     System.out.println(cout);
@@ -119,21 +129,11 @@ public class ParserNPC {
 //                     System.out.print(" zmin = " + Npc_Pos.get(npcCoord++));
 //                     System.out.print(" zmax = " + Npc_Pos.get(npcCoord++));
 //                     System.out.println(" total = " + total + " respawnTime = " + respawnTime);
-                     //}
-                 }
-                 System.out.print(npcStringBuffer);
-
-
+                 //}
              }
-                bufferedReader.close();
-         } catch (FileNotFoundException e) {
-             System.out.println("npcpos.txt not found");
-             //throw new RuntimeException(e);
-         } catch (IOException e) {
-             throw new RuntimeException(e);
+             System.out.print(npcStringBuffer);
+
+
          }
-
-
-
      }
 }
