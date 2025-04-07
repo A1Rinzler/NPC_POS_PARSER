@@ -15,13 +15,11 @@ public class ParserNPC {
     List<String> Npc_Pos = new ArrayList<>();
     StringBuffer npcStringBuffer = new StringBuffer();
     //List<String> territory = new ArrayList<>();
+    List<Integer> arrRespawnTime = new ArrayList<>();
     int respawnTime = 0;
     int total = 0;
     int npc_id = 0;
     String npc_Name = null;
-
-    int countEnd = 0;
-
 
      void parse(){
         getNPCId.getAllNPCID();
@@ -44,21 +42,27 @@ public class ParserNPC {
                     if (str.startsWith("npcmaker_begin")) {
                         String[] arrNpcmaker_begin = str.split("\t");
                         String nextLine;
-                        while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_end")){
+                        int count = 0;
+                        while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_end"))
+                            //while((nextLine = bufferedReader.readLine()) !=null)
+                            {
 
                             if (nextLine.startsWith("npc_begin")) {
                                 parseDataLine(nextLine);
+                                outPattern();
+
                            }
-                        }
-                        if (nextLine.startsWith("npcmaker_end")){
-                            outPattern();
-                            if (countEnd == 0){
-                                break;
-                            }
-                            countEnd++;
+//                            else if (nextLine.contains("npcmaker_end")){
+//                                    count++;
+//                                System.out.println(count);
+//                                }
+
                         }
 
-                    } else if (str.startsWith("npcmaker_ex_begin")) {
+                    }
+                    else if (str.startsWith("npcmaker_ex_begin")) {
+
+
                         System.out.println("yahoo");
                     }
 
@@ -93,11 +97,11 @@ public class ParserNPC {
 
             String totalStr = (arrNpc_begin[3].replaceAll("[^0-9]",""));
             total = Integer.parseInt(totalStr);
-
+            //int respawnTimeOrigin = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]",""));
             if (arrNpc_begin[4].contains("hour")){
                 respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]","")) * 3600;
             } else if (arrNpc_begin[4].contains("min")){
-                respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]","")) * 3600;
+                respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]","")) * 60;
             } else respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]",""));
         }
 
@@ -107,19 +111,16 @@ public class ParserNPC {
              for (int i = 0; i < Npc_Pos.size(); i+=4) {
                  npcStringBuffer.append("<spawn count=\"").append(total)
                          .append("\" respawn=\"").append(respawnTime).append("\" respawn_random=\"0\" period_of_day=\"none\">")
-                         .append("\n")
-                         .append("\t\t <territory>")
-                         .append("\n")
+                         .append("\n").append("\t\t <territory>").append("\n")
                          .append("\t\t\t").append("<add x=\"").append(Npc_Pos.get(npcCoord++)).append("\" y=\"").append(Npc_Pos.get(npcCoord++)).append("\" zmin=\"")
                          .append(Npc_Pos.get(npcCoord++)).append("\" zmax=\"").append(Npc_Pos.get(npcCoord++)).append("\" />")
-                         .append("\n")
-                         .append("\t\t</territory>")
-                         .append("\n")
+                         .append("\n").append("\t\t</territory>").append("\n")
                          .append("\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
-                         .append("\n")
-                         .append("</spawn>\n\n");
+                         .append("\n").append("</spawn>\n\n");
              }
              System.out.print(npcStringBuffer);
+             Npc_Pos.clear();
+             npcStringBuffer.setLength(0);
          }
      }
 }
