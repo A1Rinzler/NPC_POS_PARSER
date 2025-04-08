@@ -15,7 +15,6 @@ public class ParserNPC {
     List<String> Npc_Pos = new ArrayList<>();
     StringBuffer npcStringBuffer = new StringBuffer();
     //List<String> territory = new ArrayList<>();
-    List<Integer> arrRespawnTime = new ArrayList<>();
     int respawnTime = 0;
     int total = 0;
     int npc_id = 0;
@@ -48,8 +47,26 @@ public class ParserNPC {
                             {
 
                             if (nextLine.startsWith("npc_begin")) {
-                                parseDataLine(nextLine);
-                                outPattern();
+                                String[] anywhere = nextLine.split("\t");
+                                if (anywhere[2].contains("anywhere")){
+                                    //System.out.println("anywhere found");
+                                    System.out.println(nextLine);
+                                }
+
+//                                else {
+
+                                //todo шаблон для сингл нпц составил неверно, был сделан для терриориальных. Ниже для сингл
+
+//                                	<spawn group="devastated_castle_guards" count="1" respawn="300" respawn_random="0" period_of_day="none">
+//                                        <point x="178222" y="-14884" z="-2200" h="0" />
+//                                        <npc id="35412" /><!--Doom Guard-->
+//                                        </spawn>
+
+//                                    parseDataLine(nextLine);
+//                                    outPatternMassPoint();
+//                                }
+
+//                                System.out.println("привет");
 
                            }
 //                            else if (nextLine.contains("npcmaker_end")){
@@ -63,7 +80,7 @@ public class ParserNPC {
                     else if (str.startsWith("npcmaker_ex_begin")) {
 
 
-                        System.out.println("yahoo");
+                        //System.out.println("yahoo");
                     }
 
                 }
@@ -105,7 +122,7 @@ public class ParserNPC {
             } else respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]",""));
         }
 
-     void outPattern(){
+     void outPatternMassPoint(){
          if (!Npc_Pos.isEmpty()) {
              int npcCoord = 0;
              for (int i = 0; i < Npc_Pos.size(); i+=4) {
