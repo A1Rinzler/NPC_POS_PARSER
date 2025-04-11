@@ -1,3 +1,7 @@
+/**
+ * @author : Dmitrii Frolov, a.k.a. A1Rinzler
+ * @created : 05.04.2025
+ **/
 
 public class NPC_POS_MAIN {
 

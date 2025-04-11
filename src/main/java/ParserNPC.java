@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author : Dmitrii Frolov, a.k.a. A1Rinzler
+ * @created : 05.04.2025
+ **/
 
 // respawn_random="0" period_of_day="none"
 
@@ -51,6 +55,9 @@ public class ParserNPC {
                                 String[] anywhere = nextLine.split("\t");
                                 if (anywhere[2].contains("anywhere")){
                                     System.out.println("anywhere found");
+                                    parseDataLine(nextLine);
+                                    outPatternAnywherePoint();
+
                                     //System.out.println(nextLine);
                                 }
 
@@ -127,6 +134,12 @@ public class ParserNPC {
 //		                                        <point x="-100332" y="238019" z="-3573" h="36864" />
 //		                                    <npc id="30311" /><!--Sir Collin Windawood-->
 //	                                    </spawn>
+
+    void outPatternAnywherePoint(){
+
+    }
+
+
     void outPatternSinglePoint(){
         if (!Npc_Pos.isEmpty()) {
             int npcCoord = 0;
