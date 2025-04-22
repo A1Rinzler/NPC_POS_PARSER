@@ -21,9 +21,11 @@ public class ParserNPC {
     String groupName = "";
     //List<String> territory = new ArrayList<>();
     int respawnTime = 0;
+    int respawnRandTime = 0;
     int total = 0;
     int npc_id = 0;
     String npc_Name = "";
+    String periodOfDay = "";
 
      void parse(){
         getNPCId.getAllNPCID();
@@ -76,9 +78,30 @@ public class ParserNPC {
 //                                }
 
                         }
+                        //npcmaker_ex_begin	[gludio05_1923_20]	name=[gludio05_1923_19m2]	ai=[default_maker]	maximum_npc=3
 
                     }
                     else if (str.startsWith("npcmaker_ex_begin")) {
+                        String nextLine;
+                        String[] arrNpcmaker_ex_begin= str.split("\t");
+                        if (arrNpcmaker_ex_begin[4].contains("IsNight")){
+                           int dayMarker =  Integer.parseInt(arrNpcmaker_ex_begin[4].replaceAll("[^0-9]",""));
+
+                           switch (dayMarker){
+                               case 0: periodOfDay = "day";
+                               break;
+                               case 1: periodOfDay = "night";
+                               break;
+                               default: periodOfDay = "none";
+                           }
+
+                        }
+
+                        while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_ex_end")){
+
+                        }
+
+
 //                                    parseDataLine(nextLine);
 //                                    outPatternMassPoint();
 
@@ -122,6 +145,12 @@ public class ParserNPC {
             } else if (arrNpc_begin[4].contains("min")){
                 respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]","")) * 60;
             } else respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]",""));
+
+            if (arrNpc_begin[5].contains("hour")){
+                respawnRandTime = Integer.parseInt(arrNpc_begin[5].replaceAll("[^0-9]","")) * 3600;
+            } else if (arrNpc_begin[5].contains("min")){
+                respawnRandTime = Integer.parseInt(arrNpc_begin[5].replaceAll("[^0-9]","")) * 60;
+            } else respawnRandTime = Integer.parseInt(arrNpc_begin[5].replaceAll("[^0-9]",""));
         }
 
 
@@ -176,7 +205,6 @@ public class ParserNPC {
                  npcStringBuffer.append("<spawn count=\"").append(total)
                          .append("\" respawn=\"").append(respawnTime).append("\" respawn_random=\"0\" period_of_day=\"none\">")
                          .append("\n").append("\t\t <territory>").append("\n")
-                         .append("\t\t\t").append("<add x=\"").append(Npc_Pos.get(npcCoord++)).append("\" y=\"").append(Npc_Pos.get(npcCoord++)).append("\" zmin=\"")
                          .append(Npc_Pos.get(npcCoord++)).append("\" zmax=\"").append(Npc_Pos.get(npcCoord++)).append("\" />")
                          .append("\n").append("\t\t</territory>").append("\n")
                          .append("\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
