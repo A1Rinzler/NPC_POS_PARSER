@@ -12,5 +12,13 @@
 
 Создает xml по квадрату.\
 Добавляет тег group для:
-- осады замка
-- 
+- gludio_castle_siege
+- dion_castle_siege
+- giran_castle_siege
+- oren_castle_siege
+- innadril_castle_siege
+- aden_castle_siege
+- goddard_castle_siege
+- rune_castle_siege
+- schuttgart_castle_siege
+- christmas
