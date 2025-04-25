@@ -59,7 +59,7 @@ public class ParserNPC {
                             if (nextLine.startsWith("npc_begin")) {
                                 String[] anywhere = nextLine.split("\t");
                                 if (anywhere[2].contains("anywhere")){
-                                    System.out.println("anywhere found");
+                                    //System.out.println("anywhere found");
                                     parseDataLine(nextLine);
                                     outPatternAnywherePoint();
                                 }
@@ -155,24 +155,18 @@ public class ParserNPC {
         if (!Npc_Pos.isEmpty()) {
             int npcCoord = 0;
             for (int i = 0; i < Npc_Pos.size(); i+=4) {
+                    npcStringBuffer.append("\t<spawn ");
                 if (!groupName.isEmpty()){
-                    npcStringBuffer.append("\t<spawn group=\"").append(groupName).append("\" ").append("count=\"").append(total).append("\" ")
-                            .append("respawn=\"").append(respawnTime).append("\" ")
-                            .append("respawn_random=\"").append(respawnRandTime).append("\" ")
-                            .append("period_of_day=\">").append(periodOfDay).append("\"\n")
-                            .append("\t\t\t<point x=\"").append(Npc_Pos.get(npcCoord++)).append("\" y=\"").append(Npc_Pos.get(npcCoord++))
-                            .append("\" z=\"").append(Npc_Pos.get(npcCoord++)).append("\" h=\"").append(Npc_Pos.get(npcCoord++)).append("\" />\n")
-                            .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
-                            .append("\n").append("</spawn>\n\n");
+                    npcStringBuffer.append("group=\"").append(groupName).append("\" ");
                 }
-
-                 else npcStringBuffer.append("\t<spawn count=\"").append(total)
-                            .append("\" respawn=\"").append(respawnTime).append("\" respawn_random=\"").append(respawnRandTime).append("\" ")
-                            .append("period_of_day=\"").append(periodOfDay).append("\n")
-                            .append("\t\t\t<point x=\"").append(Npc_Pos.get(npcCoord++)).append("\" y=\"").append(Npc_Pos.get(npcCoord++))
-                            .append("\" z=\"").append(Npc_Pos.get(npcCoord++)).append("\" h=\"").append(Npc_Pos.get(npcCoord++)).append("\" />\n")
-                            .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
-                            .append("\n").append("</spawn>\n\n");
+                    npcStringBuffer.append("count=\"").append(total).append("\" ")
+                                   .append("respawn=\"").append(respawnTime).append("\" ")
+                                   .append("respawn_random=\"").append(respawnRandTime).append("\" ")
+                                   .append("period_of_day=\">").append(periodOfDay).append("\"\n")
+                                   .append("\t\t\t<point x=\"").append(Npc_Pos.get(npcCoord++)).append("\" y=\"").append(Npc_Pos.get(npcCoord++)).append("\" ")
+                                   .append("z=\"").append(Npc_Pos.get(npcCoord++)).append("\" h=\"").append(Npc_Pos.get(npcCoord++)).append("\" />\n")
+                                   .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->").append("\n")
+                                   .append("\t</spawn>\n\n");
 
                 System.out.print(npcStringBuffer);
 
@@ -183,33 +177,41 @@ public class ParserNPC {
 
     }
 
-    //todo добавить проверку есть ли вообще respawn_random и period_of_day. Если нет, то не добавлять
     //множественные координаты для спавна нпц
      void outPatternAnywherePoint(){
          if (!arrTerritoryList.isEmpty()) {
              int npcCoord = 0;
-                 npcStringBuffer.append("\t<spawn count=\"").append(total)
-                             .append("\" respawn=\"").append(respawnTime).append("\" respawn_random=\"0\" period_of_day=\"none\">")
-                             .append("\n")
-                             .append("\t\t<territory>").append("\n");
+                 npcStringBuffer.append("\t<spawn count=\"").append(total).append("\" ")
+                                .append("respawn=\"").append(respawnTime).append("\" ");
+
+                    if (respawnRandTime > 0) {
+                        npcStringBuffer.append("respawn_random=\"").append(respawnRandTime).append("\" ");
+                    }
+
+                    if (!periodOfDay.isEmpty()){
+                        npcStringBuffer.append("period_of_day=\"").append(periodOfDay).append("\">").append("\n")
+                                       .append("\t\t<territory>").append("\n");
+                    }
+                    else npcStringBuffer.append("\n").append("\t\t<territory>").append("\n");
 
                  for (int i = 0; i < arrTerritoryList.size()/4; i++) {
                      npcStringBuffer.append("\t\t\t<add")
-                             .append(" x=\"").append(arrTerritoryList.get(npcCoord++))
-                             .append("\" y=\"").append(arrTerritoryList.get(npcCoord++))
-                             .append("\" zmin=\"").append(arrTerritoryList.get(npcCoord++))
-                             .append("\" zmax=\"").append(arrTerritoryList.get(npcCoord++)).append("\" />")
-                             .append("\n");
+                                    .append(" x=\"").append(arrTerritoryList.get(npcCoord++))
+                                    .append("\" y=\"").append(arrTerritoryList.get(npcCoord++))
+                                    .append("\" zmin=\"").append(arrTerritoryList.get(npcCoord++))
+                                    .append("\" zmax=\"").append(arrTerritoryList.get(npcCoord++)).append("\" />")
+                                    .append("\n");
                  }
 
                  npcStringBuffer.append("\t\t</territory>").append("\n")
-                             .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
-                             .append("\n").append("\t</spawn>\n\n");
+                                .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
+                                .append("\n").append("\t</spawn>\n\n");
 
 
              System.out.print(npcStringBuffer);
              Npc_Pos.clear();
              npcStringBuffer.setLength(0);
+             periodOfDay = "";
          }
      }
 }
