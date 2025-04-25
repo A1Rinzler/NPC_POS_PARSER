@@ -14,13 +14,6 @@ public enum CastleSiegeGroup {
     aden_castle_siege, //dbname=[aden_siege_067]
     goddard_castle_siege, //dbname=[godad_siege_423]
     rune_castle_siege, //dbname=[rune_siege_001]
-
+    devastated_castle_guards,   //dbname=[devastated_334]
     schuttgart_castle_siege; //dbname=[schuttgart_castle_001] территория и npcmaker без обозначения castle
-
-
-
-
-
-    //ToDo [innadrile_dominion03] не проверять   territory_begin	[rune03_dominion2016_02]  npcmaker_begin	[rune03_dominion2016_02]
-
 }

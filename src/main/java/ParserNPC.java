@@ -73,7 +73,6 @@ public class ParserNPC {
                            }
 
                         }
-                        //npcmaker_ex_begin	[gludio05_1923_20]	name=[gludio05_1923_19m2]	ai=[default_maker]	maximum_npc=3
 
                     }
                     else if (str.startsWith("npcmaker_ex_begin")) {
@@ -82,6 +81,7 @@ public class ParserNPC {
                         if (arrNpcmaker_ex_begin[4].contains("IsNight")){
                            int dayMarker =  Integer.parseInt(arrNpcmaker_ex_begin[4].replaceAll("[^0-9]",""));
 
+                           //todo уточнить 1 и 0 какое время обозначают
                            switch (dayMarker){
                                case 0: periodOfDay = "day";
                                break;
@@ -93,14 +93,19 @@ public class ParserNPC {
                         }
 
                         while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_ex_end")){
-
+                            if (nextLine.startsWith("npc_ex_begin")) {
+                                String[] anywhere = nextLine.split("\t");
+                                if (anywhere[2].contains("anywhere")){
+                                    //System.out.println("anywhere found");
+                                    parseDataLine(nextLine);
+                                    outPatternAnywherePoint();
+                                }
+                                else {
+                                    parseDataLine(nextLine);
+                                    outPatternSinglePoint();
+                                }
+                            }
                         }
-
-
-//                                    parseDataLine(nextLine);
-//                                    outPatternMassPoint();
-
-                        //System.out.println("yahoo");
                     }
 
                 }
@@ -172,6 +177,8 @@ public class ParserNPC {
 
                 Npc_Pos.clear();
                 npcStringBuffer.setLength(0);
+                periodOfDay = "none";
+                respawnRandTime = 0;
             }
         }
 
@@ -182,11 +189,8 @@ public class ParserNPC {
          if (!arrTerritoryList.isEmpty()) {
              int npcCoord = 0;
                  npcStringBuffer.append("\t<spawn count=\"").append(total).append("\" ")
-                                .append("respawn=\"").append(respawnTime).append("\" ");
-
-                    if (respawnRandTime > 0) {
-                        npcStringBuffer.append("respawn_random=\"").append(respawnRandTime).append("\" ");
-                    }
+                                .append("respawn=\"").append(respawnTime).append("\" ")
+                                .append("respawn_random=\"").append(respawnRandTime).append("\" ");
 
                     if (!periodOfDay.isEmpty()){
                         npcStringBuffer.append("period_of_day=\"").append(periodOfDay).append("\">").append("\n")
@@ -209,9 +213,10 @@ public class ParserNPC {
 
 
              System.out.print(npcStringBuffer);
-             Npc_Pos.clear();
+             //Npc_Pos.clear();
              npcStringBuffer.setLength(0);
-             periodOfDay = "";
+             periodOfDay = "none";
+             respawnRandTime = 0;
          }
      }
 }
