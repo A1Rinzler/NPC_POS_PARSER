@@ -26,7 +26,7 @@ public class ParserNPC {
     int total = 0;
     int npc_id = 0;
     String npc_Name = "";
-    String periodOfDay = "";
+    String periodOfDay = "none";
 
      void parse(){
         getNPCId.getAllNPCID();
@@ -162,8 +162,8 @@ public class ParserNPC {
                     npcStringBuffer.append("count=\"").append(total).append("\" ")
                                    .append("respawn=\"").append(respawnTime).append("\" ")
                                    .append("respawn_random=\"").append(respawnRandTime).append("\" ")
-                                   .append("period_of_day=\">").append(periodOfDay).append("\"\n")
-                                   .append("\t\t\t<point x=\"").append(Npc_Pos.get(npcCoord++)).append("\" y=\"").append(Npc_Pos.get(npcCoord++)).append("\" ")
+                                   .append("period_of_day=\"").append(periodOfDay).append("\">\n")
+                                   .append("\t\t<point x=\"").append(Npc_Pos.get(npcCoord++)).append("\" y=\"").append(Npc_Pos.get(npcCoord++)).append("\" ")
                                    .append("z=\"").append(Npc_Pos.get(npcCoord++)).append("\" h=\"").append(Npc_Pos.get(npcCoord++)).append("\" />\n")
                                    .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->").append("\n")
                                    .append("\t</spawn>\n\n");
