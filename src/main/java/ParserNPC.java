@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ParserNPC {
     final String npcpos_file = "src/main/resources/npcpos_test.txt";
-    CastleSiegeGroup castleSiegeGroup;
+    GroupsName groupsName = new GroupsName();
     GetNPC_Id getNPCId = new GetNPC_Id();
     List<String> Npc_Pos = new ArrayList<>();
     List<String> arrTerritoryList = new ArrayList<>();
@@ -53,9 +53,9 @@ public class ParserNPC {
                             if (nextLine.startsWith("npc_begin")) {
                                 String[] npcBeginLine = nextLine.split("\t");
 
-                                String dbName = npcBeginLine[4];
+                                String dbName = npcBeginLine[5];
 
-                                groupName = getGroupName(dbName);
+                                groupName = groupsName.getGroupName(dbName);
 
                                 if (npcBeginLine[2].contains("anywhere")){
                                     //System.out.println("anywhere found");
@@ -108,45 +108,6 @@ public class ParserNPC {
              throw new RuntimeException(e);
          }
      }
-
-    String getGroupName(String dbName){
-         String groupName="";
-         if (dbName.contains("gludio_siege")){
-            castleSiegeGroup = CastleSiegeGroup.GLUDIO;
-            groupName = castleSiegeGroup.getCastleNameGroup();
-         } else if (dbName.contains("dion_siege")) {
-            castleSiegeGroup = CastleSiegeGroup.DION;
-            groupName = castleSiegeGroup.getCastleNameGroup();
-         } else if (dbName.contains("giran_siege")) {
-            castleSiegeGroup = CastleSiegeGroup.GIRAN;
-            groupName = castleSiegeGroup.getCastleNameGroup();
-         } else if (dbName.contains("oren_siege")) {
-            castleSiegeGroup = CastleSiegeGroup.OREN;
-            groupName = castleSiegeGroup.getCastleNameGroup();
-         } else if (dbName.contains("innadrile_siege")) {
-            castleSiegeGroup = CastleSiegeGroup.INNADRIL;
-            groupName = castleSiegeGroup.getCastleNameGroup();
-         } else if (dbName.contains("aden_siege")) {
-            castleSiegeGroup = CastleSiegeGroup.ADEN;
-            groupName = castleSiegeGroup.getCastleNameGroup();
-         } else if (dbName.contains("godad_siege")) {
-            castleSiegeGroup = CastleSiegeGroup.GODDARD;
-            groupName = castleSiegeGroup.getCastleNameGroup();
-         } else if (dbName.contains("rune_siege")) {
-            castleSiegeGroup = CastleSiegeGroup.RUNE;
-            groupName = castleSiegeGroup.getCastleNameGroup();
-         }
-
-         //todo дописать с учетом боссов со схожими dbName в скриптах
-         else if (dbName.contains("dion_siege")) {
-            castleSiegeGroup = CastleSiegeGroup.DION;
-            groupName = castleSiegeGroup.getCastleNameGroup();
-         } else if (dbName.contains("dion_siege")) {
-            castleSiegeGroup = CastleSiegeGroup.DION;
-            groupName = castleSiegeGroup.getCastleNameGroup();
-        }
-         return groupName;
-    }
 
      void parseDataLine(String nextLine) {
         String[] arrNpc_Pos;

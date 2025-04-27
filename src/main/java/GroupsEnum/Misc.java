@@ -6,7 +6,7 @@ package GroupsEnum;
  **/
 
 public enum Misc {
-    christmas;//event_wannabe_santa2,     x_mas_tree_a   <npc id="13006"/><!--Christmas Tree-->   <npc id="31864"/><!--Santa Trainee--> <npc id="31863"/><!--Santa Trainee-->
+    CHRISTMAS("christmas");//event_wannabe_santa2,     x_mas_tree_a   <npc id="13006"/><!--Christmas Tree-->   <npc id="31864"/><!--Santa Trainee--> <npc id="31863"/><!--Santa Trainee-->
     //rune_castle_benom dbname=[benom]
     //npc_begin	[gustav]	pos={178298;-17624;-2194;32768}	total=1	respawn=2hour	dbname=[devastated_359]	dbsaving={death_time;parameters;pos}	npc_end
     //dawn ssq 	npcmaker_ex_begin	ai_parameters={[EventName]=[ssq_seal1_twilight]}
@@ -23,4 +23,13 @@ public enum Misc {
 //		<point x="178304" y="-17712" z="-2194" h="0" />
 //		<npc id="35409" /><!--Mikhail-->
 //	</spawn>
+    String groupName;
+
+    Misc(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
 }
