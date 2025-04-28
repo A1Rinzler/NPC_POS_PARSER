@@ -1,8 +1,7 @@
-import GroupsEnum.CastleSiegeGroup;
+import GroupsEnum.Groups;
 
 import java.io.*;
 //import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.List;
 
 public class ParserNPC {
     final String npcpos_file = "src/main/resources/npcpos_test.txt";
-    GroupsName groupsName = new GroupsName();
     GetNPC_Id getNPCId = new GetNPC_Id();
     List<String> Npc_Pos = new ArrayList<>();
     List<String> arrTerritoryList = new ArrayList<>();
@@ -55,7 +53,7 @@ public class ParserNPC {
 
                                 String dbName = npcBeginLine[5];
 
-                                groupName = groupsName.getGroupName(dbName);
+                                groupName = Groups.getGroupByLine(dbName);
 
                                 if (npcBeginLine[2].contains("anywhere")){
                                     //System.out.println("anywhere found");
