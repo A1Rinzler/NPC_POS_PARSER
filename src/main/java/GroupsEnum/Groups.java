@@ -25,8 +25,8 @@ public enum Groups {
     CHRISTMAS("christmas"),//npcmaker_ex_begin  ai_parameters={[EventName]=[christmas]}
 
     //Raid boss event groups
-    BENOM("");//rune_castle_benom dbname=[benom]
-    //npc_begin	[gustav]	pos={178298;-17624;-2194;32768}	total=1	respawn=2hour	dbname=[devastated_359]	dbsaving={death_time;parameters;pos}	npc_end
+    BENOM("rune_castle_benom"),//rune_castle_benom dbname=[benom]
+    DEVASTATES_BOSS("devastated_castle_boss");//npc_begin	[gustav]	pos={178298;-17624;-2194;32768}	total=1	respawn=2hour	dbname=[devastated_359]	dbsaving={death_time;parameters;pos}	npc_end
     //dawn ssq 	npcmaker_ex_begin	ai_parameters={[EventName]=[ssq_seal1_twilight]}
 
 //    	<spawn group="devastated_castle_boss" count="1" respawn="300" respawn_random="0" period_of_day="none">
