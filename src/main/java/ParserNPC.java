@@ -14,6 +14,7 @@ import java.util.List;
 public class ParserNPC {
     final String npcpos_file = "src/main/resources/npcpos_test.txt";
     GetNPC_Id getNPCId = new GetNPC_Id();
+    CreateXML createXML = new CreateXML();
     List<String> Npc_Pos = new ArrayList<>();
     List<String> arrTerritoryList = new ArrayList<>();
     StringBuffer npcStringBuffer = new StringBuffer();
@@ -35,7 +36,7 @@ public class ParserNPC {
                     if (str.startsWith("territory_begin")) {
                         String[] arrTerritory_begin = str.split("\t");
 
-                        CreateXML.createXMLFile(arrTerritory_begin[1]);
+                        createXML.createXMLFile(arrTerritory_begin[1]);
 
                         String coordTerritory = arrTerritory_begin[2];
 
