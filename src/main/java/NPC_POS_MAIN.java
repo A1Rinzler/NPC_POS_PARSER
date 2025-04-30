@@ -7,6 +7,6 @@ public class NPC_POS_MAIN {
 
     public static void main(String[] args) {
        ParserNPC parserNPC = new ParserNPC();
-        parserNPC.parse();
+       parserNPC.parse();
     }
 }

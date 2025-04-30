@@ -17,43 +17,50 @@ import java.util.List;
 
 public class CreateXML {
     StringBuffer xmlOutPattern = new StringBuffer();
-    Path directoryPath = Paths.get("/home/dataXml"); //адрес для теста, далее пусть от папки Out читать
+    Path directoryPath = Paths.get("/home/dataXml"); //адрес для теста, далее путь от папки Out читать
     List<String> directoryFiles = new ArrayList<>();
+    String xmlFileName = "";
 
     //todo добавить в конец каждого файла после парса скрипта.
     String endOfFile = "</list>";
 
      void createXMLFile(String str, StringBuffer stringBuffer){
          getXmlOutPattern();
+         xmlFileName = getName(str);
         //System.out.println(getName(str));
         //System.out.println(stringBuffer);
-         //getDirectoryFiles(directoryPath);
-         writeToXmlFile(directoryFiles,xmlOutPattern, stringBuffer, getName(str));
-
+         getDirectoryFiles(directoryPath);
+         writeToXmlFile(directoryFiles,xmlOutPattern, stringBuffer, xmlFileName);
      }
 
     private void writeToXmlFile(List<String> files, StringBuffer pattern, StringBuffer parsedPattern, String fileName){
         String adressToFile = directoryPath + "/" +fileName;
-        //System.out.println(adressToFile);
 
-        //todo проверка на существующий файл по полученному имени.
-        //if (){}
-        try {
-            BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(adressToFile), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
-            //bufferedWriter.write(pattern.toString()); //запись шаблона единоразовая, если файла не существовало.
-            bufferedWriter.write(parsedPattern.toString());
-            bufferedWriter.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            try {
+                BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(adressToFile), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
+                    if (!twinCheck()){
+                        bufferedWriter.write(pattern.toString()); //запись шаблона единоразовая, если файла не существовало.
+                     }
+                bufferedWriter.write(parsedPattern.toString());
+                bufferedWriter.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
     }
-    private void checkList(){
-         for (String a : directoryFiles){
-             System.out.println(a);
+
+    private boolean twinCheck(){
+         boolean twin = false;
+         for (String file : directoryFiles){
+            if (file.equals(xmlFileName)){
+                twin = true;
+                break;
+            }else twin = false;
          }
-     }
+         return twin;
+    }
 
     private void getDirectoryFiles(Path directoryPath){
+        directoryFiles.clear();
          if (Files.exists(directoryPath) && Files.isDirectory(directoryPath)){
              try {
                  Stream<Path> checkFilesStream = Files.list(directoryPath);
@@ -65,12 +72,7 @@ public class CreateXML {
              } catch (IOException e) {
                  throw new RuntimeException(e);
              }
-             /* Чтение директории, туда проверку на имя файла.
-              * если файл существует записать в него, если файл не существует,
-              * получить имя заполнить его getXmlOutPattern() и записать в него.
-              * */
          }
-         checkList();
      }
 
 
@@ -92,7 +94,9 @@ public class CreateXML {
 
     }
 
+    //todo вынести отдельно,чтобы не костылять с чисткой. Каждый раз дописывает, т.к. вызова метода много.
     private void getXmlOutPattern(){
+         xmlOutPattern.setLength(0);
          xmlOutPattern.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>").append("\n")
                  .append("<!DOCTYPE list SYSTEM \"spawn.dtd\">").append("\n")
                  .append("<list>").append("\n");
