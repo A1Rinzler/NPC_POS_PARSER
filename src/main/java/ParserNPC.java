@@ -25,6 +25,7 @@ public class ParserNPC {
     int npc_id = 0;
     String npc_Name = "";
     String periodOfDay = "none";
+    String territoryName = "";
 
      void parse(){
         getNPCId.getAllNPCID();
@@ -35,8 +36,9 @@ public class ParserNPC {
                 while ((str = bufferedReader.readLine()) !=null  ) {
                     if (str.startsWith("territory_begin")) {
                         String[] arrTerritory_begin = str.split("\t");
+                        territoryName = arrTerritory_begin[1];
 
-                        createXML.createXMLFile(arrTerritory_begin[1]);
+                        //createXML.createXMLFile(arrTerritory_begin[1]);
 
                         String coordTerritory = arrTerritory_begin[2];
 
@@ -162,8 +164,8 @@ public class ParserNPC {
                                    .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->").append("\n")
                                    .append("\t</spawn>\n\n");
 
-                System.out.print(npcStringBuffer);
-
+                //System.out.print(npcStringBuffer);
+                createXML.createXMLFile(territoryName, npcStringBuffer);
                 Npc_Pos.clear();
                 npcStringBuffer.setLength(0);
                 periodOfDay = "none";
@@ -200,8 +202,8 @@ public class ParserNPC {
                                 .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
                                 .append("\n").append("\t</spawn>\n\n");
 
-
-             System.out.print(npcStringBuffer);
+             createXML.createXMLFile(territoryName, npcStringBuffer);
+             //System.out.print(npcStringBuffer);
              npcStringBuffer.setLength(0);
              periodOfDay = "none";
              respawnRandTime = 0;

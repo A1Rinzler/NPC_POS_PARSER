@@ -1,8 +1,12 @@
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
+import java.util.List;
 
 /**
  * @author : Dmitrii Frolov, a.k.a. A1Rinzler
@@ -12,25 +16,41 @@ import java.util.regex.Pattern;
 public class CreateXML {
     StringBuffer xmlOutPattern = new StringBuffer();
     String xmlName = "";
-    String directoryName = "/home/dataXml"; //адрес для теста, далее пусть от папки Out читать
+    Path directoryPath = Paths.get("/home/dataXml"); //адрес для теста, далее пусть от папки Out читать
 
-    Path path = Paths.get(directoryName);
-
+    List<String> directoryFiles = new ArrayList<>();
 
     //todo не все имена территорий работают по такому шаблону, некоторые просто текстовые названия без координат. Захардкодить отдельно, их немного.
     //например такие названия dg_20_21_03f_004, core_cube, 23_18_baium_npc, t21_24_boss1f_008. Они в конце скрипта, может еще где, но не видел.
-     void createXMLFile(String str){
+     void createXMLFile(String str, StringBuffer stringBuffer){
 
-        System.out.println(getName(str));
+        //System.out.println(getName(str));
+        //System.out.println(stringBuffer);
 
-         if (Files.exists(path) && Files.isDirectory(path)){
-
-             /* Чтение директории, туда проверку на имя файла.
+        if (Files.exists(directoryPath) && Files.isDirectory(directoryPath)){
+            try {
+                Stream<Path> checkFilesStream = Files.list(directoryPath);
+                checkFilesStream.forEach(path -> {
+                    if (Files.isRegularFile(path)){
+                        directoryFiles.add(path.getFileName().toString());
+                    }
+                });
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            /* Чтение директории, туда проверку на имя файла.
               * если файл существует записать в него, если файл не существует,
               * получить имя заполнить его getXmlOutPattern() и записать в него.
               * */
+        }
+        checkList();
+     }
+     void checkList(){
+         for (String a : directoryFiles){
+             System.out.println(a);
          }
-    }
+     }
+
 
      private String getName(String str){
         String matchXmlName = "";
