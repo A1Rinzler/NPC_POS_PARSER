@@ -1,0 +1,3 @@
+put here pts gracia final scripts
+npcspos.txt
+npc_pch.txt
