@@ -17,7 +17,8 @@ import java.util.List;
 
 public class CreateXML {
     StringBuffer xmlOutPattern = new StringBuffer();
-    Path directoryPath = Paths.get("/home/dataXml"); //адрес для теста, далее путь от папки Out читать
+    //Path directoryPath = Paths.get("NPC_POS_PARSER","Npc_Pos_Parser","PTS_Scritps", "XML_Out"); //адрес для теста, далее путь от папки Out читать
+    Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
     List<String> directoryFiles = new ArrayList<>();
     String xmlFileName = "";
 

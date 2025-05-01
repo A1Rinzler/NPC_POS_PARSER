@@ -1,17 +1,20 @@
-/src/main/resources/npc_pch.txt
-/src/main/resources/npcpos.txt
+/Npc_Pos_Parser/PTS_Scritps/npc_pch.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos.txt
 /target/
 /.idea/
-/src/main/resources/npcpos_Beleth_clones.txt
-/src/main/resources/npcpos_cata_necr.txt
-/src/main/resources/npcpos_events.txt
-/src/main/resources/npcpos_fantasy_island.txt
-/src/main/resources/npcpos_fortresses.txt
-/src/main/resources/npcpos_hellbound.txt
-/src/main/resources/npcpos_IoP.txt
-/src/main/resources/npcpos_kamaloka_pailaka.txt
-/src/main/resources/npcpos_premium_manager.txt
-/src/main/resources/npcpos_somthingSpawnForHB.txt
-/src/main/resources/npcpos_treasure_box.txt
-/src/main/resources/npcpos_test.txt
-/src/main/resources/npcpos_Dimensional Rift.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_Beleth_clones.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_cata_necr.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_events.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_fantasy_island.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_fortresses.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_hellbound.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_IoP.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_kamaloka_pailaka.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_premium_manager.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_somthingSpawnForHB.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_treasure_box.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_test.txt
+/Npc_Pos_Parser/PTS_Scritps/npcpos_Dimensional Rift.txt
+/Npc_Pos_Parser/XML_Out/*
+/Npc_Pos_Parser/PTS_Scritps/*
+/Npc_Pos_Parser/lib/compile/*

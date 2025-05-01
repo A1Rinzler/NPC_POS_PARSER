@@ -12,7 +12,7 @@ public class GetNPC_Id {
 
     public Map<String, Integer> allNPCId = new HashMap<>();
 
-    private final String npc_pch = "src/main/resources/npc_pch.txt";
+    private final String npc_pch = "Npc_Pos_Parser/PTS_Scritps/npc_pch.txt";
 
     public int getNPC_Id(String NPCName){
         try {

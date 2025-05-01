@@ -7,10 +7,15 @@
     <groupId>ru.rinzler</groupId>
     <artifactId>NPC_POS_PARSER</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <build>
+        <finalName>NpcPosParser</finalName>
+        <directory>${project.basedir}/Npc_Pos_Parser/lib/compile</directory>
+    </build>
 </project>
