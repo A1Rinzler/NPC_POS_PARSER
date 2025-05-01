@@ -17,7 +17,6 @@ import java.util.List;
 
 public class CreateXML {
     StringBuffer xmlOutPattern = new StringBuffer();
-    //Path directoryPath = Paths.get("NPC_POS_PARSER","Npc_Pos_Parser","PTS_Scritps", "XML_Out"); //адрес для теста, далее путь от папки Out читать
     Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
     List<String> directoryFiles = new ArrayList<>();
     String xmlFileName = "";
@@ -89,10 +88,22 @@ public class CreateXML {
         }
         //todo не все имена территорий работают по такому шаблону, некоторые просто текстовые названия без координат. Захардкодить отдельно, их немного.
         //например такие названия dg_20_21_03f_004, core_cube, 23_18_baium_npc, t21_24_boss1f_008. Они в конце скрипта, может еще где, но не видел.
-        else System.out.println("Ну нет такого закона!"); //не нашло совпадений
+        //else System.out.println("Ну нет такого закона!"); //не нашло совпадений
+         else {
+             switch (str){
+                case "[queenant_room]" -> xmlName ="";
+                    //[new_queen_ant_guard_room],[queen_ant_guard_room],[orphen_t21_18_001], [orphen_t21_18_002],[orphen_t21_18_001_01],[dg_20_21_03f_004],[dg_20_21_03f_tele],
+                    //[core_cube],[dg_20_21_03f_004_02],[dg_20_21_03f_005],[23_18_baium_npc],
 
+                 default -> {
+                     if (str.contains("t21_24_boss")){
+                         xmlName ="";
+                     }
+                     else xmlName = "NoNameMatches.xml";
+                 }
+             }
+         }
         return xmlName;
-
     }
 
     //todo вынести отдельно,чтобы не костылять с чисткой. Каждый раз дописывает, т.к. вызова метода много.
