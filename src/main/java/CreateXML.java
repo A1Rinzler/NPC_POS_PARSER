@@ -75,10 +75,9 @@ public class CreateXML {
          }
      }
 
-
      private String getName(String str){
-        String xmlName = "";
-        String matchXmlName = "";
+        String xmlName;
+        String matchXmlName;
         Pattern xmlNamePattern = Pattern.compile("\\d{4}");
         Matcher xmlNameMatcher = xmlNamePattern.matcher(str);
 
@@ -86,18 +85,24 @@ public class CreateXML {
             matchXmlName = xmlNameMatcher.group();
             xmlName = matchXmlName.substring(0,2) + "_" + matchXmlName.substring(2) + ".xml";
         }
-        //todo не все имена территорий работают по такому шаблону, некоторые просто текстовые названия без координат. Захардкодить отдельно, их немного.
-        //например такие названия dg_20_21_03f_004, core_cube, 23_18_baium_npc, t21_24_boss1f_008. Они в конце скрипта, может еще где, но не видел.
-        //else System.out.println("Ну нет такого закона!"); //не нашло совпадений
          else {
              switch (str){
-                case "[queenant_room]" -> xmlName ="";
-                    //[new_queen_ant_guard_room],[queen_ant_guard_room],[orphen_t21_18_001], [orphen_t21_18_002],[orphen_t21_18_001_01],[dg_20_21_03f_004],[dg_20_21_03f_tele],
-                    //[core_cube],[dg_20_21_03f_004_02],[dg_20_21_03f_005],[23_18_baium_npc],
+                case "[queenant_room]" -> xmlName ="19_17_Ant_Queen.xml";
+                case "[new_queen_ant_guard_room]" -> xmlName ="19_17_Ant_Queen.xml";
+                case "[queen_ant_guard_room]" -> xmlName ="19_17_Ant_Queen.xml";
+                case "[orphen_t21_18_001]" -> xmlName ="21_18_Orfen.xml";
+                case "[orphen_t21_18_002]" -> xmlName ="21_18_Orfen.xml";
+                case "[orphen_t21_18_001_01]" -> xmlName ="21_18_Orfen.xml";
+                case "[dg_20_21_03f_004]" -> xmlName ="20_21.xml"; // у остальных сборок квадрат 20_17
+                case "[dg_20_21_03f_tele]" -> xmlName ="20_21.xml"; // у остальных сборок квадрат 20_17
+                case "[core_cube]" -> xmlName ="20_17_Core.xml";
+                case "[dg_20_21_03f_004_02]" -> xmlName ="20_21.xml";
+                case "[dg_20_21_03f_005]" -> xmlName ="20_21.xml";
+                case "[23_18_baium_npc]" -> xmlName ="23_18_Baium.xml";
 
                  default -> {
                      if (str.contains("t21_24_boss")){
-                         xmlName ="";
+                         xmlName ="21_24_Zaken.xml";
                      }
                      else xmlName = "NoNameMatches.xml";
                  }

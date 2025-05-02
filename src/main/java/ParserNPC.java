@@ -12,7 +12,7 @@ import java.util.List;
  **/
 
 public class ParserNPC {
-    final String npcpos_file = "Npc_Pos_Parser/PTS_Scritps/npcpos_test.txt";
+    final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos_test.txt";
     GetNPC_Id getNPCId = new GetNPC_Id();
     CreateXML createXML = new CreateXML();
     List<String> Npc_Pos = new ArrayList<>();
