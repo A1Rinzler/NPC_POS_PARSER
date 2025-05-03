@@ -1,7 +1,8 @@
 import GroupsEnum.Groups;
+import XmlEngine.CreateXML;
+import XmlEngine.EndOfLine;
 
 import java.io.*;
-//import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,8 +14,10 @@ import java.util.List;
 
 public class ParserNPC {
     final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos_test.txt";
+
     GetNPC_Id getNPCId = new GetNPC_Id();
     CreateXML createXML = new CreateXML();
+    EndOfLine endOfLine = new EndOfLine();
     List<String> Npc_Pos = new ArrayList<>();
     List<String> arrTerritoryList = new ArrayList<>();
     StringBuffer npcStringBuffer = new StringBuffer();
@@ -27,7 +30,7 @@ public class ParserNPC {
     String periodOfDay = "none";
     String territoryName = "";
 
-     void parse(){
+     public void parse(){
         getNPCId.getAllNPCID();
          try {
              BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream(npcpos_file)));//, StandardCharsets.UTF_16LE));
@@ -108,8 +111,7 @@ public class ParserNPC {
              throw new RuntimeException(e);
          }
 
-         //todo после всех операций добавить закрывающих тег для всех xml файлов
-         //writeEndOfLine();
+         endOfLine.writeEndOfLine();
      }
 
      void parseDataLine(String nextLine) {
@@ -147,7 +149,6 @@ public class ParserNPC {
         }
      }
 
-
     //одна координата для спавна нпц
     void outPatternSinglePoint(){
         if (!Npc_Pos.isEmpty()) {
@@ -164,9 +165,8 @@ public class ParserNPC {
                                    .append("\t\t<point x=\"").append(Npc_Pos.get(npcCoord++)).append("\" y=\"").append(Npc_Pos.get(npcCoord++)).append("\" ")
                                    .append("z=\"").append(Npc_Pos.get(npcCoord++)).append("\" h=\"").append(Npc_Pos.get(npcCoord++)).append("\" />\n")
                                    .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->").append("\n")
-                                   .append("\t</spawn>\n\n");
+                                   .append("\t</spawn>\n");
 
-                //System.out.print(npcStringBuffer);
                 createXML.createXMLFile(territoryName, npcStringBuffer);
                 Npc_Pos.clear();
                 npcStringBuffer.setLength(0);
@@ -174,7 +174,6 @@ public class ParserNPC {
                 respawnRandTime = 0;
             }
         }
-
     }
 
     //множественные координаты для спавна нпц
@@ -202,10 +201,9 @@ public class ParserNPC {
 
                  npcStringBuffer.append("\t\t</territory>").append("\n")
                                 .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
-                                .append("\n").append("\t</spawn>\n\n");
+                                .append("\n").append("\t</spawn>\n");
 
              createXML.createXMLFile(territoryName, npcStringBuffer);
-             //System.out.print(npcStringBuffer);
              npcStringBuffer.setLength(0);
              periodOfDay = "none";
              respawnRandTime = 0;

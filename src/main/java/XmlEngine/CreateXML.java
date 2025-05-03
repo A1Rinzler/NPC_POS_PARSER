@@ -1,3 +1,5 @@
+package XmlEngine;
+
 import Patterns.EncodingPattern;
 import Patterns.XmlPattern;
 
@@ -24,24 +26,21 @@ public class CreateXML {
     List<String> directoryFiles = new ArrayList<>();
     String xmlFileName = "";
 
-    //todo добавить в конец каждого файла после парса скрипта.
-    String endOfFile = "</list>";
-
-     void createXMLFile(String str, StringBuffer stringBuffer){
+     public void createXMLFile(String str, StringBuffer parsedPatternBuffer){
          xmlFileName = getName(str);
          getDirectoryFiles(directoryPath);
-         writeToXmlFile(directoryFiles, xmlEncodingPattern.getXmlPattern(), stringBuffer, xmlFileName);
+         writeToXmlFile(xmlEncodingPattern.getXmlPattern(), parsedPatternBuffer, xmlFileName);
      }
 
-    private void writeToXmlFile(List<String> files, StringBuffer pattern, StringBuffer parsedPattern, String fileName){
-        String adressToFile = directoryPath + "/" +fileName;
+    private void writeToXmlFile(StringBuffer xmlEncodingPattern, StringBuffer parsedPatternBuffer, String xmlFileName){
+        String adressToFile = directoryPath + "/" + xmlFileName;
 
             try {
                 BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(adressToFile), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
                     if (!twinCheck()){
-                        bufferedWriter.write(pattern.toString()); //запись шаблона единоразовая, если файла не существовало.
+                        bufferedWriter.write(xmlEncodingPattern.toString()); //запись шаблона единоразовая, если файла не существовало.
                      }
-                bufferedWriter.write(parsedPattern.toString());
+                bufferedWriter.write(parsedPatternBuffer.toString());
                 bufferedWriter.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
