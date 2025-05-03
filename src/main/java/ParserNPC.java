@@ -100,7 +100,6 @@ public class ParserNPC {
                         }
                     }
                 }
-
                 bufferedReader.close();
          } catch (FileNotFoundException e) {
              System.out.println("npcpos.txt not found");
@@ -108,6 +107,9 @@ public class ParserNPC {
          } catch (IOException e) {
              throw new RuntimeException(e);
          }
+
+         //todo после всех операций добавить закрывающих тег для всех xml файлов
+         //writeEndOfLine();
      }
 
      void parseDataLine(String nextLine) {

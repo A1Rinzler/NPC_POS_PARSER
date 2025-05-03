@@ -1,3 +1,6 @@
+import Patterns.EncodingPattern;
+import Patterns.XmlPattern;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,7 +19,7 @@ import java.util.List;
  **/
 
 public class CreateXML {
-    StringBuffer xmlOutPattern = new StringBuffer();
+    XmlPattern xmlEncodingPattern = new EncodingPattern();
     Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
     List<String> directoryFiles = new ArrayList<>();
     String xmlFileName = "";
@@ -25,12 +28,9 @@ public class CreateXML {
     String endOfFile = "</list>";
 
      void createXMLFile(String str, StringBuffer stringBuffer){
-         getXmlOutPattern();
          xmlFileName = getName(str);
-        //System.out.println(getName(str));
-        //System.out.println(stringBuffer);
          getDirectoryFiles(directoryPath);
-         writeToXmlFile(directoryFiles,xmlOutPattern, stringBuffer, xmlFileName);
+         writeToXmlFile(directoryFiles, xmlEncodingPattern.getXmlPattern(), stringBuffer, xmlFileName);
      }
 
     private void writeToXmlFile(List<String> files, StringBuffer pattern, StringBuffer parsedPattern, String fileName){
@@ -87,35 +87,18 @@ public class CreateXML {
         }
          else {
              switch (str){
-                case "[queenant_room]" -> xmlName ="19_17_Ant_Queen.xml";
-                case "[new_queen_ant_guard_room]" -> xmlName ="19_17_Ant_Queen.xml";
-                case "[queen_ant_guard_room]" -> xmlName ="19_17_Ant_Queen.xml";
-                case "[orphen_t21_18_001]" -> xmlName ="21_18_Orfen.xml";
-                case "[orphen_t21_18_002]" -> xmlName ="21_18_Orfen.xml";
-                case "[orphen_t21_18_001_01]" -> xmlName ="21_18_Orfen.xml";
-                case "[dg_20_21_03f_004]" -> xmlName ="20_21.xml"; // у остальных сборок квадрат 20_17
-                case "[dg_20_21_03f_tele]" -> xmlName ="20_21.xml"; // у остальных сборок квадрат 20_17
-                case "[core_cube]" -> xmlName ="20_17_Core.xml";
-                case "[dg_20_21_03f_004_02]" -> xmlName ="20_21.xml";
-                case "[dg_20_21_03f_005]" -> xmlName ="20_21.xml";
-                case "[23_18_baium_npc]" -> xmlName ="23_18_Baium.xml";
-
+                 case "[queenant_room]", "[new_queen_ant_guard_room]", "[queen_ant_guard_room]" -> xmlName ="19_23_Ant_Queen.xml";
+                 case "[orphen_t21_18_001]", "[orphen_t21_18_002]", "[orphen_t21_18_001_01]" -> xmlName ="21_18_Orfen.xml";
+                 case "[dg_20_21_03f_004_02]", "[dg_20_21_03f_005]", "[dg_20_21_03f_004]", "[dg_20_21_03f_tele]" -> xmlName ="20_21.xml";
+                 case "[core_cube]" -> xmlName ="20_21_Core.xml";
+                 case "[23_18_baium_npc]" -> xmlName ="23_18_Baium.xml";
                  default -> {
                      if (str.contains("t21_24_boss")){
                          xmlName ="21_24_Zaken.xml";
-                     }
-                     else xmlName = "NoNameMatches.xml";
+                     }else xmlName = "NoNameMatches.xml";
                  }
              }
          }
         return xmlName;
-    }
-
-    //todo вынести отдельно,чтобы не костылять с чисткой. Каждый раз дописывает, т.к. вызова метода много.
-    private void getXmlOutPattern(){
-         xmlOutPattern.setLength(0);
-         xmlOutPattern.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>").append("\n")
-                 .append("<!DOCTYPE list SYSTEM \"spawn.dtd\">").append("\n")
-                 .append("<list>").append("\n");
     }
 }
