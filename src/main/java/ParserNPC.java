@@ -1,4 +1,5 @@
 import GroupsEnum.Groups;
+import Patterns.ParsedSinglePattern;
 import XmlEngine.CreateXML;
 import XmlEngine.EndOfLine;
 
@@ -14,9 +15,9 @@ import java.util.List;
 
 public class ParserNPC {
     final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos_test.txt";
-
     GetNPC_Id getNPCId = new GetNPC_Id();
     CreateXML createXML = new CreateXML();
+    ParsedSinglePattern parsedSinglePattern = new ParsedSinglePattern();
     EndOfLine endOfLine = new EndOfLine();
     List<String> Npc_Pos = new ArrayList<>();
     List<String> arrTerritoryList = new ArrayList<>();
@@ -68,6 +69,7 @@ public class ParserNPC {
                                 }
                                 else {
                                     parseDataLine(nextLine);
+                                    //parsedSinglePattern.singlePattern()
                                     outPatternSinglePoint();
                                 }
                            }

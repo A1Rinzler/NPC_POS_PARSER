@@ -5,8 +5,7 @@ package Patterns;
  * @created : 03.05.2025
  **/
 
-public class EncodingPattern implements XmlPattern{
-    @Override
+public class EncodingPattern {
     public StringBuffer getXmlPattern() {
         StringBuffer encodingPatten = new StringBuffer();
             encodingPatten.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>").append("\n")

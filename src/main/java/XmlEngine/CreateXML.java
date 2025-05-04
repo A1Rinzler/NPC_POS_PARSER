@@ -1,7 +1,6 @@
 package XmlEngine;
 
 import Patterns.EncodingPattern;
-import Patterns.XmlPattern;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -21,7 +20,7 @@ import java.util.List;
  **/
 
 public class CreateXML {
-    XmlPattern xmlEncodingPattern = new EncodingPattern();
+    EncodingPattern xmlEncodingPattern = new EncodingPattern();
     Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
     List<String> directoryFiles = new ArrayList<>();
     String xmlFileName = "";
