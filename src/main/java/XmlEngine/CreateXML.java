@@ -21,7 +21,9 @@ import java.util.List;
 
 public class CreateXML {
     EncodingPattern xmlEncodingPattern = new EncodingPattern();
-    Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
+    //Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
+    Path directoryPath = Paths.get("XML_Out");
+
     List<String> directoryFiles = new ArrayList<>();
     String xmlFileName = "";
 
@@ -38,7 +40,7 @@ public class CreateXML {
                 BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(adressToFile), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
                     if (!twinCheck()){
                         bufferedWriter.write(xmlEncodingPattern.toString()); //запись шаблона единоразовая, если файла не существовало.
-                     }
+                    }
                 bufferedWriter.write(parsedPatternBuffer.toString());
                 bufferedWriter.close();
             } catch (IOException e) {

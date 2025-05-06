@@ -16,7 +16,9 @@ import java.util.stream.Stream;
  **/
 
 public class EndOfLine {
-    Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
+    //Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
+    Path directoryPath = Paths.get("XML_Out");
+
     List<String> directoryFiles = new ArrayList<>();
     String endOfFile = "</list>";
 

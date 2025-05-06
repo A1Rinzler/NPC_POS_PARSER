@@ -15,7 +15,9 @@ import java.util.List;
  **/
 
 public class ParserNPC {
-    final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos_test.txt";
+    //final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos_test.txt";
+    final String npcpos_file = "PTS_Scripts/npcpos_test.txt";
+
     GetNPC_Id getNPCId = new GetNPC_Id();
     SinglePointPattern singlePointPattern = new SinglePointPattern();
     MassPointPattern massPointPattern = new MassPointPattern();
