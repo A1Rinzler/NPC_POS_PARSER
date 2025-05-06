@@ -39,6 +39,8 @@ public class ParserNPC {
 
                 while ((str = bufferedReader.readLine()) !=null  ) {
                     if (str.startsWith("territory_begin")) {
+                        arrTerritoryList.clear();
+
                         String[] arrTerritory_begin = str.split("\t");
                         territoryName = arrTerritory_begin[1];
 
@@ -50,32 +52,33 @@ public class ParserNPC {
                         arrTerritoryList.addAll(Arrays.asList(arrTerritory));
                     }
                     if (str.startsWith("npcmaker_begin")) {
+                        periodOfDay = "none";
                         //String[] arrNpcmaker_begin = str.split("\t");
                         String nextLine;
-                        while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_end"))
-                            {
-
+                        while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_end")){
                             if (nextLine.startsWith("npc_begin")) {
-                                String[] npcBeginLine = nextLine.split("\t");
 
+                                resetValues();
+
+                                String[] npcBeginLine = nextLine.split("\t");
                                 String dbName = npcBeginLine[5];
 
                                 groupName = Groups.getGroupByLine(dbName);
 
                                 if (npcBeginLine[2].contains("anywhere")){
-                                    //System.out.println("anywhere found");
                                     parseDataLine(nextLine);
                                     outPatternAnywherePoint();
                                 }
                                 else {
                                     parseDataLine(nextLine);
-                                    //parsedSinglePattern.singlePattern()
-                                    outPatternSinglePoint();
+                                    parsedSinglePattern.singlePattern(Npc_Pos, groupName,total,respawnTime,respawnRandTime,periodOfDay,npc_id,npc_Name,territoryName);
+                                    //outPatternSinglePoint();
                                 }
                            }
                         }
                     }
                     else if (str.startsWith("npcmaker_ex_begin")) {
+                        periodOfDay = "none";
                         String nextLine;
                         String[] arrNpcmaker_ex_begin= str.split("\t");
                         if (arrNpcmaker_ex_begin[4].contains("IsNight")){
@@ -92,6 +95,9 @@ public class ParserNPC {
 
                         while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_ex_end")){
                             if (nextLine.startsWith("npc_ex_begin")) {
+
+                                resetValues();
+
                                 String[] anywhere = nextLine.split("\t");
                                 if (anywhere[2].contains("anywhere")){
                                     parseDataLine(nextLine);
@@ -99,7 +105,8 @@ public class ParserNPC {
                                 }
                                 else {
                                     parseDataLine(nextLine);
-                                    outPatternSinglePoint();
+                                    parsedSinglePattern.singlePattern(Npc_Pos, groupName,total,respawnTime,respawnRandTime,periodOfDay,npc_id,npc_Name,territoryName);
+                                    //outPatternSinglePoint();
                                 }
                             }
                         }
@@ -114,6 +121,13 @@ public class ParserNPC {
          }
 
          endOfLine.writeEndOfLine();
+     }
+
+     void resetValues(){
+         Npc_Pos.clear();
+         npcStringBuffer.setLength(0);
+         respawnRandTime = 0;
+         groupName = "";
      }
 
      void parseDataLine(String nextLine) {
@@ -169,11 +183,8 @@ public class ParserNPC {
                                    .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->").append("\n")
                                    .append("\t</spawn>\n");
 
-                createXML.createXMLFile(territoryName, npcStringBuffer);
-                Npc_Pos.clear();
-                npcStringBuffer.setLength(0);
-                periodOfDay = "none";
-                respawnRandTime = 0;
+                //createXML.createXMLFile(territoryName, npcStringBuffer);
+
             }
         }
     }
@@ -205,10 +216,9 @@ public class ParserNPC {
                                 .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
                                 .append("\n").append("\t</spawn>\n");
 
+             //System.out.println(npcStringBuffer);
              createXML.createXMLFile(territoryName, npcStringBuffer);
-             npcStringBuffer.setLength(0);
-             periodOfDay = "none";
-             respawnRandTime = 0;
          }
      }
+
 }

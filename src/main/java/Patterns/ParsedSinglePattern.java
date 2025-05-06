@@ -32,10 +32,6 @@ public class ParsedSinglePattern {
                         .append("\t</spawn>\n");
 
                 createXML.createXMLFile(territoryName, npcStringBuffer);
-                Npc_Pos.clear();
-                //npcStringBuffer.setLength(0);
-                periodOfDay = "none";
-                respawnRandTime = 0;
             }
         }
         return npcStringBuffer;
