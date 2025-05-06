@@ -65,8 +65,7 @@ public class ParserNPC {
                                 if (npcBeginLine[2].contains("anywhere")){
                                     outPatternAnywherePoint();
                                 }else {
-                                    singlePointPattern.singlePattern(npc_Pos, groupName,total,respawnTime,respawnRandTime,periodOfDay,npc_Id,npc_Name,territoryName);
-                                    //outPatternSinglePoint();
+                                    callSinglePattern();
                                 }
                            }
                         }
@@ -95,8 +94,7 @@ public class ParserNPC {
                                 if (anywhere[2].contains("anywhere")){
                                     outPatternAnywherePoint();
                                 }else {
-                                    singlePointPattern.singlePattern(npc_Pos, groupName,total,respawnTime,respawnRandTime,periodOfDay,npc_Id,npc_Name,territoryName);
-                                    //outPatternSinglePoint();
+                                    callSinglePattern();
                                 }
                             }
                         }
@@ -118,14 +116,24 @@ public class ParserNPC {
          respawnRandTime = 0;
          groupName = "";
      }
+     void callSinglePattern(){
+         singlePointPattern.singlePattern(
+                 npc_Pos,
+                 groupName,
+                 total,
+                 respawnTime,
+                 respawnRandTime,
+                 periodOfDay,
+                 npc_Id,
+                 npc_Name,
+                 territoryName);
+     }
 
      void parseDataLine(String nextLine) {
         String[] arrNpc_Pos;
-
         String[] arrNpc_begin = nextLine.split("\t");
         npc_Name = arrNpc_begin[1].replace("[", "").replace("]", "").trim();
         npc_Id = getNPCId.getNPC_Id(arrNpc_begin[1]);
-
         String[] splitPos = arrNpc_begin[2].split("=");
 
         if (!splitPos[1].equals("anywhere")) {
