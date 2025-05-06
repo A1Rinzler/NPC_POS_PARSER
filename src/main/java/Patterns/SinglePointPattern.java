@@ -9,7 +9,7 @@ import java.util.List;
  * @created : 04.05.2025
  **/
 
-public class ParsedSinglePattern {
+public class SinglePointPattern {
     CreateXML createXML = new CreateXML();
 
     public StringBuffer singlePattern(List<String> Npc_Pos, String groupName, int total, int respawnTime, int respawnRandTime,

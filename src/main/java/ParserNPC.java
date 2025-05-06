@@ -1,5 +1,5 @@
 import GroupsEnum.Groups;
-import Patterns.ParsedSinglePattern;
+import Patterns.SinglePointPattern;
 import XmlEngine.CreateXML;
 import XmlEngine.EndOfLine;
 
@@ -17,16 +17,16 @@ public class ParserNPC {
     final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos_test.txt";
     GetNPC_Id getNPCId = new GetNPC_Id();
     CreateXML createXML = new CreateXML();
-    ParsedSinglePattern parsedSinglePattern = new ParsedSinglePattern();
+    SinglePointPattern singlePointPattern = new SinglePointPattern();
     EndOfLine endOfLine = new EndOfLine();
-    List<String> Npc_Pos = new ArrayList<>();
+    List<String> npc_Pos = new ArrayList<>();
     List<String> arrTerritoryList = new ArrayList<>();
     StringBuffer npcStringBuffer = new StringBuffer();
     String groupName = "";
     int respawnTime = 0;
     int respawnRandTime = 0;
     int total = 0;
-    int npc_id = 0;
+    int npc_Id = 0;
     String npc_Name = "";
     String periodOfDay = "none";
     String territoryName = "";
@@ -57,21 +57,15 @@ public class ParserNPC {
                         String nextLine;
                         while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_end")){
                             if (nextLine.startsWith("npc_begin")) {
-
                                 resetValues();
-
                                 String[] npcBeginLine = nextLine.split("\t");
                                 String dbName = npcBeginLine[5];
-
                                 groupName = Groups.getGroupByLine(dbName);
-
+                                parseDataLine(nextLine);
                                 if (npcBeginLine[2].contains("anywhere")){
-                                    parseDataLine(nextLine);
                                     outPatternAnywherePoint();
-                                }
-                                else {
-                                    parseDataLine(nextLine);
-                                    parsedSinglePattern.singlePattern(Npc_Pos, groupName,total,respawnTime,respawnRandTime,periodOfDay,npc_id,npc_Name,territoryName);
+                                }else {
+                                    singlePointPattern.singlePattern(npc_Pos, groupName,total,respawnTime,respawnRandTime,periodOfDay,npc_Id,npc_Name,territoryName);
                                     //outPatternSinglePoint();
                                 }
                            }
@@ -95,17 +89,13 @@ public class ParserNPC {
 
                         while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_ex_end")){
                             if (nextLine.startsWith("npc_ex_begin")) {
-
                                 resetValues();
-
                                 String[] anywhere = nextLine.split("\t");
+                                parseDataLine(nextLine);
                                 if (anywhere[2].contains("anywhere")){
-                                    parseDataLine(nextLine);
                                     outPatternAnywherePoint();
-                                }
-                                else {
-                                    parseDataLine(nextLine);
-                                    parsedSinglePattern.singlePattern(Npc_Pos, groupName,total,respawnTime,respawnRandTime,periodOfDay,npc_id,npc_Name,territoryName);
+                                }else {
+                                    singlePointPattern.singlePattern(npc_Pos, groupName,total,respawnTime,respawnRandTime,periodOfDay,npc_Id,npc_Name,territoryName);
                                     //outPatternSinglePoint();
                                 }
                             }
@@ -119,12 +109,11 @@ public class ParserNPC {
          } catch (IOException e) {
              throw new RuntimeException(e);
          }
-
          endOfLine.writeEndOfLine();
      }
 
      void resetValues(){
-         Npc_Pos.clear();
+         npc_Pos.clear();
          npcStringBuffer.setLength(0);
          respawnRandTime = 0;
          groupName = "";
@@ -135,7 +124,7 @@ public class ParserNPC {
 
         String[] arrNpc_begin = nextLine.split("\t");
         npc_Name = arrNpc_begin[1].replace("[", "").replace("]", "").trim();
-        npc_id = getNPCId.getNPC_Id(arrNpc_begin[1]);
+        npc_Id = getNPCId.getNPC_Id(arrNpc_begin[1]);
 
         String[] splitPos = arrNpc_begin[2].split("=");
 
@@ -144,7 +133,7 @@ public class ParserNPC {
         } else arrNpc_Pos = null;
 
         if (arrNpc_Pos != null) {
-            Npc_Pos.addAll(Arrays.asList(arrNpc_Pos));
+            npc_Pos.addAll(Arrays.asList(arrNpc_Pos));
         }
 
         String totalStr = (arrNpc_begin[3].replaceAll("[^0-9]", ""));
@@ -167,9 +156,9 @@ public class ParserNPC {
 
     //одна координата для спавна нпц
     void outPatternSinglePoint(){
-        if (!Npc_Pos.isEmpty()) {
+        if (!npc_Pos.isEmpty()) {
             int npcCoord = 0;
-            for (int i = 0; i < Npc_Pos.size(); i+=4) {
+            for (int i = 0; i < npc_Pos.size(); i+=4) {
                     npcStringBuffer.append("\t<spawn ");
                 if (!groupName.isEmpty()){
                     npcStringBuffer.append("group=\"").append(groupName).append("\" ");
@@ -178,13 +167,11 @@ public class ParserNPC {
                                    .append("respawn=\"").append(respawnTime).append("\" ")
                                    .append("respawn_random=\"").append(respawnRandTime).append("\" ")
                                    .append("period_of_day=\"").append(periodOfDay).append("\">\n")
-                                   .append("\t\t<point x=\"").append(Npc_Pos.get(npcCoord++)).append("\" y=\"").append(Npc_Pos.get(npcCoord++)).append("\" ")
-                                   .append("z=\"").append(Npc_Pos.get(npcCoord++)).append("\" h=\"").append(Npc_Pos.get(npcCoord++)).append("\" />\n")
-                                   .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->").append("\n")
+                                   .append("\t\t<point x=\"").append(npc_Pos.get(npcCoord++)).append("\" y=\"").append(npc_Pos.get(npcCoord++)).append("\" ")
+                                   .append("z=\"").append(npc_Pos.get(npcCoord++)).append("\" h=\"").append(npc_Pos.get(npcCoord++)).append("\" />\n")
+                                   .append("\t\t<npc id=\"").append(npc_Id).append("\" /><!--").append(npc_Name).append("-->").append("\n")
                                    .append("\t</spawn>\n");
-
-                //createXML.createXMLFile(territoryName, npcStringBuffer);
-
+                createXML.createXMLFile(territoryName, npcStringBuffer);
             }
         }
     }
@@ -196,13 +183,11 @@ public class ParserNPC {
                  npcStringBuffer.append("\t<spawn count=\"").append(total).append("\" ")
                                 .append("respawn=\"").append(respawnTime).append("\" ")
                                 .append("respawn_random=\"").append(respawnRandTime).append("\" ");
-
                     if (!periodOfDay.isEmpty()){
                         npcStringBuffer.append("period_of_day=\"").append(periodOfDay).append("\">").append("\n")
                                        .append("\t\t<territory>").append("\n");
                     }
                     else npcStringBuffer.append("\n").append("\t\t<territory>").append("\n");
-
                  for (int i = 0; i < arrTerritoryList.size()/4; i++) {
                      npcStringBuffer.append("\t\t\t<add")
                                     .append(" x=\"").append(arrTerritoryList.get(npcCoord++))
@@ -211,14 +196,11 @@ public class ParserNPC {
                                     .append("\" zmax=\"").append(arrTerritoryList.get(npcCoord++)).append("\" />")
                                     .append("\n");
                  }
-
                  npcStringBuffer.append("\t\t</territory>").append("\n")
-                                .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->")
+                                .append("\t\t<npc id=\"").append(npc_Id).append("\" /><!--").append(npc_Name).append("-->")
                                 .append("\n").append("\t</spawn>\n");
-
              //System.out.println(npcStringBuffer);
              createXML.createXMLFile(territoryName, npcStringBuffer);
          }
      }
-
 }
