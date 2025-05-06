@@ -29,15 +29,17 @@ public class EndOfLine {
         String adressToFile;
         for(String xmlFileName : directoryFiles){
             adressToFile = directoryPath + "/" + xmlFileName;
-        try {
-            BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(adressToFile), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
-                if (adressToFile.endsWith(".xml")){
-                bufferedWriter.write(endOfFile);
+            try {
+                BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(adressToFile), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
+                    if (adressToFile.endsWith(".xml")){
+                    bufferedWriter.write(endOfFile);
+                    }
+                bufferedWriter.close();
                 }
-            bufferedWriter.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }}
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private void getDirectoryFiles(Path directoryPath){
