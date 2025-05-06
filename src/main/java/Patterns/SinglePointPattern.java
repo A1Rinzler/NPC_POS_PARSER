@@ -12,7 +12,7 @@ import java.util.List;
 public class SinglePointPattern {
     CreateXML createXML = new CreateXML();
 
-    public StringBuffer singlePattern(List<String> Npc_Pos, String groupName, int total, int respawnTime, int respawnRandTime,
+    public void singlePattern(List<String> Npc_Pos, String groupName, int total, int respawnTime, int respawnRandTime,
                                       String periodOfDay, int npc_id, String npc_Name, String territoryName) {
         StringBuffer npcStringBuffer = new StringBuffer();
         if (!Npc_Pos.isEmpty()) {
@@ -34,6 +34,5 @@ public class SinglePointPattern {
                 createXML.createXMLFile(territoryName, npcStringBuffer);
             }
         }
-        return npcStringBuffer;
     }
 }
