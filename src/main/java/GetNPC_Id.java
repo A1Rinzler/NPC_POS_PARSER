@@ -12,18 +12,12 @@ public class GetNPC_Id {
 
     public Map<String, Integer> allNPCId = new HashMap<>();
 
-    //private final String npc_pch = "Npc_Pos_Parser/PTS_Scripts/npc_pch.txt";
+    private final String npc_pch = "Npc_Pos_Parser/PTS_Scripts/npc_pch.txt";
 
-    private final String npc_pch = "PTS_Scripts/npc_pch.txt";
+    //private final String npc_pch = "PTS_Scripts/npc_pch.txt";
 
     public int getNPC_Id(String NPCName){
-        try {
-            return allNPCId.get(NPCName);
-        }
-    catch (NullPointerException e){
-        System.out.println("NullPointerException");
-        return 0;
-        }
+        return allNPCId.get(NPCName);
     }
 
     public void getAllNPCID(){
@@ -44,5 +38,4 @@ public class GetNPC_Id {
             throw new RuntimeException(e);
         }
     }
-
 }

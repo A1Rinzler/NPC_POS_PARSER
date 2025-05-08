@@ -21,8 +21,8 @@ import java.util.List;
 
 public class CreateXML {
     EncodingPattern xmlEncodingPattern = new EncodingPattern();
-    //Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
-    Path directoryPath = Paths.get("XML_Out");
+    Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
+    //Path directoryPath = Paths.get("XML_Out");
 
     List<String> directoryFiles = new ArrayList<>();
     String xmlFileName = "";
