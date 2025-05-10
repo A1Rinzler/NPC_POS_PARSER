@@ -25,32 +25,15 @@ public enum Groups {
     CHRISTMAS("christmas"),//npcmaker_ex_begin  ai_parameters={[EventName]=[christmas]}
 
     //Raid boss event groups
-    BENOM("rune_castle_benom"),//rune_castle_benom dbname=[benom]
-    DEVASTATES_BOSS("devastated_castle_boss");//npc_begin	[gustav]	pos={178298;-17624;-2194;32768}	total=1	respawn=2hour	dbname=[devastated_359]	dbsaving={death_time;parameters;pos}	npc_end
-    //dawn ssq 	npcmaker_ex_begin	ai_parameters={[EventName]=[ssq_seal1_twilight]}
-
-//    	<spawn group="devastated_castle_boss" count="1" respawn="300" respawn_random="0" period_of_day="none">
-//		<point x="178298" y="-17624" z="-2194" h="0" />
-//		<npc id="35410" /><!--Gustav-->
-//	</spawn>
-//	<spawn group="devastated_castle_boss" count="1" respawn="300" respawn_random="0" period_of_day="none">
-//		<point x="178306" y="-17535" z="-2195" h="0" />
-//		<npc id="35408" /><!--Dietrich-->
-//	</spawn>
-//	<spawn group="devastated_castle_boss" count="1" respawn="300" respawn_random="0" period_of_day="none">
-//		<point x="178304" y="-17712" z="-2194" h="0" />
-//		<npc id="35409" /><!--Mikhail-->
-//	</spawn>
-
-
+    BENOM("rune_castle_benom");//rune_castle_benom dbname=[benom]
 
 //элитные захватываемые клан холлы
-//    Fortress of Resistance
-//    Bandit Stronghold
-//    Devastated Castle
-//    Wild Beast Reserve
-//    Fortress of the Dead
-//    Rainbow Springs Chateau
+//    Fortress of Resistance            нету, обработать вручную                            // dion23_레지스탕스의요새_아지트전_2121;
+//    Bandit Stronghold                 dbname=[tbb1] dbname=[tbf1]                         // oren15_산적단산채_아지트전_
+//    Devastated Castle                 dbname=[devastated_001]                             // aden05_파괴된성채_아지트전_2517;
+//    Wild Beast Reserve                dbname=[farmazit01]	                                // rune07_야수농장_아지트전_2115;
+//    Fortress of the Dead npc_begin	dbname=[RestlessAzit_086]                           // [rune11][망자의요새][아지트전]
+//    Rainbow Springs Chateau           dbname=[rainbow_azit_001] dbname=[farmazitfinal01]  // [godard06][레인보우스프링][아지트전] 2414
 
 
     private String groupName;
@@ -81,11 +64,21 @@ public enum Groups {
             groupName = GODDARD.getGroupName();
         } else if (dbName.contains("rune_siege")) {
             groupName = RUNE.getGroupName();
-        } else if (dbName.contains("devastated")) {
-            groupName = DEVASTATED.getGroupName();
         } else if (dbName.contains("schuttgart_castle")) {
-            groupName = SCHUTTGART.getGroupName();
-        }
+            groupName = SCHUTTGART.getGroupName();}
+        //элитные захватываемые клан холлы
+        else if (dbName.contains("devastated")) {
+            groupName = DEVASTATED.getGroupName();}
+
+
+        //ивент новый год
+        else if (dbName.contains("christmas")) {
+            groupName = CHRISTMAS.getGroupName();}
+        //рб руны Benom
+        else if (dbName.contains("benom")) {
+            groupName = BENOM.getGroupName();}
+
+
         return groupName;
     }
 }
