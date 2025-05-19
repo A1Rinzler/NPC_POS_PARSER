@@ -5,6 +5,7 @@ import XmlEngine.CreateXML;
 import XmlEngine.EndOfLine;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  **/
 
 public class ParserNPC {
-    private final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos_test.txt";
+    private final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos.txt";
     //final String npcpos_file = "PTS_Scripts/npcpos_test.txt";
 
     GetNPC_Id getNPCId = new GetNPC_Id();
@@ -36,7 +37,7 @@ public class ParserNPC {
      public void parse(){
         getNPCId.getAllNPCID();
          try {
-             BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream(npcpos_file)));//, StandardCharsets.UTF_16LE));
+             BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream(npcpos_file), StandardCharsets.UTF_16LE));
              String str;
 
                 while ((str = bufferedReader.readLine()) !=null  ) {
@@ -144,8 +145,11 @@ public class ParserNPC {
         npc_Id = getNPCId.getNPC_Id(arrNpc_begin[1]);
         String[] splitPos = arrNpc_begin[2].split("=");
 
+        System.out.println(territoryName + " " + npc_Name);
+
         if (!splitPos[1].equals("anywhere")) {
-            arrNpc_Pos = splitPos[1].replaceAll("[{}]", "").split(";");
+            arrNpc_Pos = splitPos[1].replaceAll("[{}]", "").split(";", 4);
+
         } else arrNpc_Pos = null;
 
         if (arrNpc_Pos != null) {
@@ -159,6 +163,8 @@ public class ParserNPC {
             respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]", "")) * 3600;
         } else if (arrNpc_begin[4].contains("min")) {
             respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]", "")) * 60;
+        } else if (arrNpc_begin[4].contains("no")) {
+                respawnTime = 0;
         } else respawnTime = Integer.parseInt(arrNpc_begin[4].replaceAll("[^0-9]", ""));
 
         if (arrNpc_begin[5].contains("respawn_rand")){
