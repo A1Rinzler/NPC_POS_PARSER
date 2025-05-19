@@ -1,7 +1,7 @@
 import GroupsEnum.Groups;
 import Patterns.MassPointPattern;
 import Patterns.SinglePointPattern;
-import XmlEngine.CreateXML;
+//import XmlEngine.CreateXML;
 import XmlEngine.EndOfLine;
 
 import java.io.*;
@@ -61,11 +61,13 @@ public class ParserNPC {
                                 String dbName = npcBeginLine[5];
                                 groupName = Groups.getGroupByLine(dbName);
                                 parseDataLine(nextLine);
+
                                 if (npcBeginLine[2].contains("anywhere")){
                                     callMassPointPattern();
                                 }else {
                                     callSinglePointPattern();
                                 }
+
                            }
                         }
                     }
@@ -138,13 +140,30 @@ public class ParserNPC {
                  territoryName);
      }
 
+    private void swap(String[] arr, int index){
+            if (arr.length != 0 ){
+                String temp = arr[index];
+                for (int i = index; i < arr.length - 1; i ++) {
+                   arr[i] = arr[i + 1];
+                }
+                arr[arr.length - 1] = temp;
+            }
+            else throw new IllegalArgumentException("Массив пуст");
+    }
+
     private void parseDataLine(String nextLine) {
         String[] arrNpc_Pos;
         String[] arrNpc_begin = nextLine.split("\t");
+
+        //свап индексов, если на второй позиции стоит nickname, а не координаты. Перемещается в конец массива.
+        if (arrNpc_begin[2].contains("nickname")){
+            swap(arrNpc_begin, 2);
+        }
         npc_Name = arrNpc_begin[1].replace("[", "").replace("]", "").trim();
         npc_Id = getNPCId.getNPC_Id(arrNpc_begin[1]);
         String[] splitPos = arrNpc_begin[2].split("=");
 
+        //быстро посмотреть, где стопорится парс
         System.out.println(territoryName + " " + npc_Name);
 
         if (!splitPos[1].equals("anywhere")) {
@@ -154,6 +173,11 @@ public class ParserNPC {
 
         if (arrNpc_Pos != null) {
             npc_Pos.addAll(Arrays.asList(arrNpc_Pos));
+        }
+
+        //свап индексов, если на третьей позиции стоит on_delete_create, а не total. Перемещается в конец массива.
+        if (arrNpc_begin[3].contains("on_delete_create")){
+            swap(arrNpc_begin, 3);
         }
 
         String totalStr = (arrNpc_begin[3].replaceAll("[^0-9]", ""));
