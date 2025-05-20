@@ -171,9 +171,12 @@ public class ParserNPC {
         //быстро посмотреть, где стопорится парс
         //System.out.println(territoryName + " " + npc_Name);
 
-        //todo бывает несколько координат с процентом спавна на точку. У оверов это не работает, берем первую точку.
+        //Бывает несколько координат с процентом спавна на точку. У оверов это не работает, берем первую точку.
+        //Сделал, коммент оставлю, мож подправлю на стороне сервера процент появления на точке.
         if (!splitPos[1].equals("anywhere")) {
-            arrNpc_Pos = splitPos[1].replaceAll("[{}]", "").split(";", 4);
+            String[] arrNpc_Pos_Temp = splitPos[1].replaceAll("[{}]", "").split(";");
+            arrNpc_Pos = Arrays.copyOfRange(arrNpc_Pos_Temp, 0, 4);
+            //arrNpc_Pos = splitPos[1].replaceAll("[{}]", "").split(";", 4);
 
         } else arrNpc_Pos = null;
 
