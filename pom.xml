@@ -24,7 +24,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>NPC_POS_MAIN</mainClass>
+                            <mainClass>ParserLaunch</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

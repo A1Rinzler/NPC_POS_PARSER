@@ -1,3 +1,5 @@
+package DataParse;
+
 import GroupsEnum.Groups;
 import Patterns.MassPointPattern;
 import Patterns.SinglePointPattern;
@@ -169,7 +171,7 @@ public class ParserNPC {
         String[] splitPos = arrNpc_begin[2].split("=");
 
         //быстро посмотреть, где стопорится парс
-        //System.out.println(territoryName + " " + npc_Name);
+        System.out.println(territoryName + " " + npc_Name);
 
         //Бывает несколько координат с процентом спавна на точку. У оверов это не работает, берем первую точку.
         //Сделал, коммент оставлю, мож подправлю на стороне сервера процент появления на точке.
