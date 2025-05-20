@@ -45,20 +45,24 @@ public class ParserNPC {
                         arrTerritoryList.clear();
 
                         String[] arrTerritory_begin = str.split("\t");
-                        territoryName = arrTerritory_begin[1];
+                        //territoryName = arrTerritory_begin[1];
                         String coordTerritory = arrTerritory_begin[2];
                         String[] arrTerritory = coordTerritory.replaceAll("[{}]", "").split(";"); //координаты Anywhere
                         arrTerritoryList.addAll(Arrays.asList(arrTerritory));
                     }
                     if (str.startsWith("npcmaker_begin")) {
                         periodOfDay = "none";
-                        //String[] arrNpcmaker_begin = str.split("\t");
+                        String[] arrNpcmaker_begin = str.split("\t");
+                        territoryName = arrNpcmaker_begin[1];
                         String nextLine;
                         while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_end")){
                             if (nextLine.startsWith("npc_begin")) {
                                 resetValues();
                                 String[] npcBeginLine = nextLine.split("\t");
+
+                                //todo ai_parameters={[EventName]=[christmas]} передавать подобную строку для извлечения имени для группы ивентов.
                                 String dbName = npcBeginLine[5];
+
                                 groupName = Groups.getGroupByLine(dbName);
                                 parseDataLine(nextLine);
 
@@ -75,6 +79,7 @@ public class ParserNPC {
                         periodOfDay = "none";
                         String nextLine;
                         String[] arrNpcmaker_ex_begin= str.split("\t");
+                        territoryName = arrNpcmaker_ex_begin[1];
                         if (arrNpcmaker_ex_begin[4].contains("IsNight")){
                            int dayMarker =  Integer.parseInt(arrNpcmaker_ex_begin[4].replaceAll("[^0-9]",""));
 
