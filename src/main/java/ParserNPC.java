@@ -169,8 +169,9 @@ public class ParserNPC {
         String[] splitPos = arrNpc_begin[2].split("=");
 
         //быстро посмотреть, где стопорится парс
-        System.out.println(territoryName + " " + npc_Name);
+        //System.out.println(territoryName + " " + npc_Name);
 
+        //todo бывает несколько координат с процентом спавна на точку. У оверов это не работает, берем первую точку.
         if (!splitPos[1].equals("anywhere")) {
             arrNpc_Pos = splitPos[1].replaceAll("[{}]", "").split(";", 4);
 

@@ -88,7 +88,7 @@ public class CreateXML {
 //         else {}
          switch (str){
              case "[queenant_room]", "[new_queen_ant_guard_room]", "[queen_ant_guard_room]" -> xmlName ="19_23_Ant_Queen.xml";
-             case "[orphen_t21_18_001]", "[orphen_t21_18_002]", "[orphen_t21_18_001_01]" -> xmlName ="21_18_Orfen.xml";
+             case "[orphen_t21_18_001]", "[orphen_t21_18_002]", "[orphen_t21_18_001_01]", "[orphen_t21_18_002];[orphen_t21_18_001]" -> xmlName ="21_18_Orfen.xml";
              case "[dg_20_21_03f_004_02]", "[dg_20_21_03f_005]", "[dg_20_21_03f_004]", "[dg_20_21_03f_tele]" -> xmlName ="20_21.xml";
              case "[core_cube]" -> xmlName ="20_21_Core.xml";
              case "[23_18_baium_npc]" -> xmlName ="23_18_Baium.xml";
@@ -131,6 +131,7 @@ public class CreateXML {
                   "[schuttgart19_2213_26]", "[schuttgart19_2213_27]", "[schuttgart19_2213_28]", "[schuttgart19_2213_29]", "[schuttgart19_2213_30]",
                   "[schuttgart19_2213_31]", "[schuttgart19_2213_32]", "[schuttgart19_2213_33]", "[schuttgart19_2213_34]", "[schuttgart19_2213_35]",
                   "[schuttgart19_2213_36]" -> xmlName = "22_13_Schuttgart_Siege.xml";
+             case "[t121_24_071]", "[t21_244_009]" -> xmlName = "21_24.xml";
              default -> {
                  if (str.contains("t21_24_boss")){
                      xmlName ="21_24_Zaken.xml";
