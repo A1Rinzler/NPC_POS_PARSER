@@ -132,6 +132,46 @@ public class CreateXML {
                   "[schuttgart19_2213_31]", "[schuttgart19_2213_32]", "[schuttgart19_2213_33]", "[schuttgart19_2213_34]", "[schuttgart19_2213_35]",
                   "[schuttgart19_2213_36]" -> xmlName = "22_13_Schuttgart_Siege.xml";
              case "[t121_24_071]", "[t21_244_009]" -> xmlName = "21_24.xml";
+             case "[23_normal]", "[26_normal]", "[26_pccafe]", "[33_normal]", "[36_normal]", "[36_pccafe]", "[43_normal]", "[46_normal]", "[46_pccafe]",
+                  "[53_normal]", "[56_normal]", "[56_pccafe]", "[63_normal_1]", "[66_normal_1]", "[66_pccafe]", "[73_normal_1]", "[63_normal_2]",
+                  "[73_normal_2]", "[obelisk_territory_a]", "[53_normal_buha]", "[66_pccafe_buha]"-> xmlName = "Kamaloka.xml";
+             case "[inzone03_2011_25]", "[inzone03_2011_30]", "[inzone03_2011_35]", "[inzone03_2011_40]", "[inzone03_2011_50]", "[inzone03_2011_55]",
+                  "[inzone03_2011_60]", "[inzone03_2011_65]", "[inzone03_2011_70]", "[inzone03_2011_75]" -> xmlName = "Rim_Kamaloka.xml";
+             case "[oren_t20_14_018]", "[oren_t20_14_19]", "[oren_t20_14_20]", "[oren_t20_14_21]" -> xmlName = "20_14.xml";
+             case "[lyonn07_18_14_01]", "[lyonn07_18_14_02]", "[lyonn07_18_14_03]", "[lyonn07_18_14_04]", "[lyonn07_18_14_05]", "[lyonn07_18_14_06]",
+                  "[lyonn07_18_14_07]", "[lyonn07_18_14_08]", "[lyonn07_18_14_09]", "[lyonn07_18_14_10]", "[lyonn07_18_14_11]", "[lyonn07_18_14_12]",
+                  "[lyonn07_18_14_13]", "[lyonn07_18_14_14]", "[lyonn07_18_14_15]", "[lyonn07_18_14_16]", "[lyonn07_18_14_17]", "[lyonn07_18_14_18]",
+                  "[lyonn07_18_14_19]", "[lyonn07_18_14_20]", "[lyonn07_18_14_21]", "[lyonn07_18_14_22]", "[lyonn07_18_14_23]",
+                  "[18_14_net_cafe_event_1_01]", "[18_14_net_cafe_event_1_02]"-> xmlName = "18_14.xml";
+
+             case "[19_21_net_cafe_event_1_01]", "[19_21_net_cafe_event_1_02]", "[19_21_net_cafe_event_1_03]" -> xmlName = "19_21.xml";
+             case "[20_18_net_cafe_event_1_01]", "[20_18_net_cafe_event_1_02]" -> xmlName = "20_18.xml";
+             case "[20_22_net_cafe_event_1_01]", "[20_22_net_cafe_event_1_02]", "[20_22_net_cafe_event_1_03]" -> xmlName = "20_22.xml";
+             case "[20_23_net_cafe_event_1_01]" -> xmlName = "20_23.xml";
+             case "[21_19_net_cafe_event_1_01]", "[21_19_net_cafe_event_1_02]" -> xmlName = "21_19.xml";
+             case "[22_19_net_cafe_event_1_01]", "[22_19_net_cafe_event_1_02]", "[22_19_net_cafe_event_1_03]" -> xmlName = "22_19.xml";
+             case "[22_22_net_cafe_event_1_01]", "[22_22_net_cafe_event_1_02]", "[22_22_net_cafe_event_1_03]", "[22_22_net_cafe_event_1_04]" -> xmlName = "22_22.xml";
+             case "[23_12_net_cafe_event_1_01]", "[23_12_net_cafe_event_1_02]" -> xmlName = "23_12.xml";
+             case "[17_22_net_cafe_event_1_01]", "[17_22_net_cafe_event_1_02]", "[17_22_net_cafe_event_1_03]" -> xmlName = "17_22.xml";
+             case "[23_20_net_cafe_event_1_01]", "[23_20_net_cafe_event_1_02]", "[23_20_net_cafe_event_1_03]" -> xmlName = "23_20.xml";
+             case "[17_25_net_cafe_event_1_01]", "[17_25_net_cafe_event_1_02]" -> xmlName = "17_25.xml";
+             case "[24_18_net_cafe_event_1_01]", "[24_18_net_cafe_event_1_02]" -> xmlName = "24_18.xml";
+             case "[23_24_net_cafe_event_1_01]", "[23_24_net_cafe_event_1_02]", "[23_24_net_cafe_event_1_03]" -> xmlName = "23_24.xml";
+             case "[24_16_net_cafe_event_1_01]" -> xmlName = "24_16.xml";
+             case "[21_16_net_cafe_event_1_01]" -> xmlName = "21_16.xml";
+             case "[schuttgart20_npc2213_nc01]", "[schuttgart20_npc2213_nc02]" -> xmlName = "22_13.xml";
+
+             case "[gludio_dominion03]", "[gludio_dominion08]", "[gludio_dominion12]", "[gludio_dominion11]" -> xmlName = "Gludio_Dominion.xml";
+             case "[dion_dominion03]", "[dion_dominion08]", "[dion_dominion11]", "[dion_dominion12]" -> xmlName = "Dion_Dominion.xml";
+             case "[giran_dominion03]", "[giran_dominion08]", "[giran_dominion11]", "[giran_dominion12]" -> xmlName = "Giran_Dominion.xml";
+             case "[oren_dominion03]","[oren_dominion08]","[oren_dominion11]","[oren_dominion12]" -> xmlName = "Oren_Dominion.xml";
+             case "[innadrile_dominion03]","[innadrile_dominion08]","[innadrile_dominion11]","[innadrile_dominion12]" -> xmlName = "Innadril_Dominion.xml";
+             case "[aden_dominion092]", "[aden_dominion093]", "[aden_dominion012]" -> xmlName = "Aden_Dominion.xml";
+             case "[godard_dominion2416_0201]", "[godard_dominion2416_0202]", "[godard_dominion2416_0601]", "[godard_dominion2416_602]", "[godard_dominion2416_0801]",
+                  "[godard_dominion2416_0802]", "[godard_dominion2416_1601]", "[godard_dominion2416_1501]", "[godard_dominion2416_1502]"-> xmlName = "Goddard_Dominion.xml";
+             case "[rune03_dominion2016_02]", "[rune03_dominion2016_04]", "[rune03_dominion2016_05]", "[rune03_dominion2016_16]", "[rune03_dominion2016_17]", "[rune03_dominion2016_18]",
+                  "[rune03_dominion2016_12]", "[rune03_dominion2016_13]" -> xmlName = "Rune_Dominion.xml";
+
              default -> {
                  if (str.contains("t21_24_boss")){
                      xmlName ="21_24_Zaken.xml";
