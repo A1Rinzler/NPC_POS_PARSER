@@ -161,16 +161,18 @@ public class CreateXML {
              case "[21_16_net_cafe_event_1_01]" -> xmlName = "21_16.xml";
              case "[schuttgart20_npc2213_nc01]", "[schuttgart20_npc2213_nc02]" -> xmlName = "22_13.xml";
 
-             case "[gludio_dominion03]", "[gludio_dominion08]", "[gludio_dominion12]", "[gludio_dominion11]" -> xmlName = "Gludio_Dominion.xml";
-             case "[dion_dominion03]", "[dion_dominion08]", "[dion_dominion11]", "[dion_dominion12]" -> xmlName = "Dion_Dominion.xml";
-             case "[giran_dominion03]", "[giran_dominion08]", "[giran_dominion11]", "[giran_dominion12]" -> xmlName = "Giran_Dominion.xml";
-             case "[oren_dominion03]","[oren_dominion08]","[oren_dominion11]","[oren_dominion12]" -> xmlName = "Oren_Dominion.xml";
-             case "[innadrile_dominion03]","[innadrile_dominion08]","[innadrile_dominion11]","[innadrile_dominion12]" -> xmlName = "Innadril_Dominion.xml";
-             case "[aden_dominion092]", "[aden_dominion093]", "[aden_dominion012]" -> xmlName = "Aden_Dominion.xml";
+             case "[gludio_dominion03]", "[gludio_dominion08]", "[gludio_dominion12]", "[gludio_dominion11]", "[gludio_dominion_fort01]" -> xmlName = "Gludio_Dominion.xml";
+             case "[dion_dominion03]", "[dion_dominion08]", "[dion_dominion11]", "[dion_dominion12]", "[dion_dominion_fort01]" -> xmlName = "Dion_Dominion.xml";
+             case "[giran_dominion03]", "[giran_dominion08]", "[giran_dominion11]", "[giran_dominion12]", "[giran_dominion_fort01]" -> xmlName = "Giran_Dominion.xml";
+             case "[oren_dominion03]","[oren_dominion08]","[oren_dominion11]","[oren_dominion12]", "[oren_dominion_fort01]" -> xmlName = "Oren_Dominion.xml";
+             case "[innadrile_dominion03]","[innadrile_dominion08]","[innadrile_dominion11]","[innadrile_dominion12]", "[innadrille_dominion_fort01]" -> xmlName = "Innadril_Dominion.xml";
+             case "[aden_dominion092]", "[aden_dominion093]", "[aden_dominion012]", "[aden_dominion_fort01]" -> xmlName = "Aden_Dominion.xml";
              case "[godard_dominion2416_0201]", "[godard_dominion2416_0202]", "[godard_dominion2416_0601]", "[godard_dominion2416_602]", "[godard_dominion2416_0801]",
-                  "[godard_dominion2416_0802]", "[godard_dominion2416_1601]", "[godard_dominion2416_1501]", "[godard_dominion2416_1502]"-> xmlName = "Goddard_Dominion.xml";
+                  "[godard_dominion2416_0802]", "[godard_dominion2416_1601]", "[godard_dominion2416_1501]", "[godard_dominion2416_1502]", "[godad_dominion_fort01]" -> xmlName = "Goddard_Dominion.xml";
              case "[rune03_dominion2016_02]", "[rune03_dominion2016_04]", "[rune03_dominion2016_05]", "[rune03_dominion2016_16]", "[rune03_dominion2016_17]", "[rune03_dominion2016_18]",
-                  "[rune03_dominion2016_12]", "[rune03_dominion2016_13]" -> xmlName = "Rune_Dominion.xml";
+                  "[rune03_dominion2016_12]", "[rune03_dominion2016_13]", "[rune_dominion_fort01]" -> xmlName = "Rune_Dominion.xml";
+             case "[schuttgart19_dominion2213_01]", "[schuttgart19_dominion2213_02]", "[schuttgart19_dominion2213_09]", "[schuttgart19_dominion2213_10]", "[schuttgart19_dominion2213_13]",
+                  "[schuttgart19_dominion2213_14]", "[schuttgart19_dominion2213_15]", "[schuttgart19_dominion2213_27]", "[schuttgart19_dominion2213_28]", "[schuttgart_dominion_fort01]" -> xmlName = "Schuttgar_Dominion.xml";
 
              default -> {
                  if (str.contains("t21_24_boss")){
