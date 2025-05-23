@@ -134,7 +134,7 @@ public class CreateXML {
              case "[t121_24_071]", "[t21_244_009]" -> xmlName = "21_24.xml";
              case "[23_normal]", "[26_normal]", "[26_pccafe]", "[33_normal]", "[36_normal]", "[36_pccafe]", "[43_normal]", "[46_normal]", "[46_pccafe]",
                   "[53_normal]", "[56_normal]", "[56_pccafe]", "[63_normal_1]", "[66_normal_1]", "[66_pccafe]", "[73_normal_1]", "[63_normal_2]",
-                  "[73_normal_2]", "[obelisk_territory_a]", "[53_normal_buha]", "[66_pccafe_buha]"-> xmlName = "Kamaloka.xml";
+                  "[66_normal_2]", "[73_normal_2]", "[obelisk_territory_a]", "[53_normal_buha]", "[66_pccafe_buha]"-> xmlName = "Kamaloka.xml";
              case "[inzone03_2011_25]", "[inzone03_2011_30]", "[inzone03_2011_35]", "[inzone03_2011_40]", "[inzone03_2011_50]", "[inzone03_2011_55]",
                   "[inzone03_2011_60]", "[inzone03_2011_65]", "[inzone03_2011_70]", "[inzone03_2011_75]" -> xmlName = "Rim_Kamaloka.xml";
              case "[oren_t20_14_018]", "[oren_t20_14_19]", "[oren_t20_14_20]", "[oren_t20_14_21]" -> xmlName = "20_14.xml";
@@ -166,7 +166,7 @@ public class CreateXML {
              case "[giran_dominion03]", "[giran_dominion08]", "[giran_dominion11]", "[giran_dominion12]", "[giran_dominion_fort01]" -> xmlName = "Giran_Dominion.xml";
              case "[oren_dominion03]","[oren_dominion08]","[oren_dominion11]","[oren_dominion12]", "[oren_dominion_fort01]" -> xmlName = "Oren_Dominion.xml";
              case "[innadrile_dominion03]","[innadrile_dominion08]","[innadrile_dominion11]","[innadrile_dominion12]", "[innadrille_dominion_fort01]" -> xmlName = "Innadril_Dominion.xml";
-             case "[aden_dominion092]", "[aden_dominion093]", "[aden_dominion012]", "[aden_dominion_fort01]" -> xmlName = "Aden_Dominion.xml";
+             case "[aden_dominion092]", "[aden_dominion093]", "[aden_dominion12]", "[aden_dominion_fort01]" -> xmlName = "Aden_Dominion.xml";
              case "[godard_dominion2416_0201]", "[godard_dominion2416_0202]", "[godard_dominion2416_0601]", "[godard_dominion2416_602]", "[godard_dominion2416_0801]",
                   "[godard_dominion2416_0802]", "[godard_dominion2416_1601]", "[godard_dominion2416_1501]", "[godard_dominion2416_1502]", "[godad_dominion_fort01]" -> xmlName = "Goddard_Dominion.xml";
              case "[rune03_dominion2016_02]", "[rune03_dominion2016_04]", "[rune03_dominion2016_05]", "[rune03_dominion2016_16]", "[rune03_dominion2016_17]", "[rune03_dominion2016_18]",
