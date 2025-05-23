@@ -15,6 +15,8 @@
 ###### Начало: territory_begin
 ###### Конец: npcmaker_ex_end или npcmaker_end
 
+##### Используется лицензия Apache License v2.0
+
 ##### Добавляет тег group для:
 - gludio_castle_siege
 - dion_castle_siege
