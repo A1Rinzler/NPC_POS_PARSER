@@ -25,7 +25,14 @@ public enum Groups {
     CHRISTMAS("christmas"),//npcmaker_ex_begin  ai_parameters={[EventName]=[christmas]}
 
     //Raid boss event groups
-    BENOM("rune_castle_benom");//rune_castle_benom dbname=[benom]
+    BENOM("rune_castle_benom"),//rune_castle_benom dbname=[benom]
+
+    //Seven Signs
+    COMPETITIONSSQ("competition"),  //ssq_event
+    COMPETITIONSSQDUCK("dusk_spawn"), //ssq_seal1_twilight
+    COMPETITIONSSQDAWN("dawn_spawn"), //ssq_seal1_dawn
+    COMPETITIONSSQNOWINNER("no_winner"), //ssq_seal1_none
+    COMPETITIONSSQNULL(""); //у оверов только 3 стадии, рассвет, закат и без группы. Без группы это период соревнования и без победителя.
 
 //элитные захватываемые клан холлы
 //    Fortress of Resistance            нету, обработать вручную                            // dion23_레지스탕스의요새_아지트전_2121;
@@ -77,7 +84,15 @@ public enum Groups {
         //рб руны Benom
         else if (dbName.contains("benom")) {
             groupName = BENOM.getGroupName();}
-
+        //семь печатей
+        else if (dbName.equals("ssq_event")){
+            groupName = COMPETITIONSSQ.getGroupName();}
+        else if (dbName.contains("dawn")){
+            groupName = COMPETITIONSSQDAWN.getGroupName();}
+        else if (dbName.contains("twilight")){
+            groupName = COMPETITIONSSQDUCK.getGroupName();}
+        else if (dbName.equals("none")){
+            groupName = COMPETITIONSSQNOWINNER.getGroupName();}
 
         return groupName;
     }

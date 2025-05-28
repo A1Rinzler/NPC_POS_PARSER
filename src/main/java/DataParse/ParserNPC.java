@@ -18,8 +18,8 @@ import java.util.List;
  **/
 
 public class ParserNPC {
-    private final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos.txt";
-    //final String npcpos_file = "PTS_Scripts/npcpos_test.txt";
+    //private final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos.txt";
+    final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos_test.txt";
 
     GetNPC_Id getNPCId = new GetNPC_Id();
     SinglePointPattern singlePointPattern = new SinglePointPattern();
@@ -35,11 +35,12 @@ public class ParserNPC {
     String npc_Name = "";
     String periodOfDay = "none";
     String territoryName = "";
+    String eventName = "";
 
      public void parse(){
         getNPCId.getAllNPCID();
          try {
-             BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream(npcpos_file), StandardCharsets.UTF_16LE));
+             BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream(npcpos_file)));//, StandardCharsets.UTF_16LE));
              String str;
 
                 while ((str = bufferedReader.readLine()) !=null  ) {
@@ -62,7 +63,6 @@ public class ParserNPC {
                                 resetValues();
                                 String[] npcBeginLine = nextLine.split("\t");
 
-                                //todo ai_parameters={[EventName]=[christmas]} передавать подобную строку для извлечения имени для группы ивентов.
                                 String dbName = npcBeginLine[5];
 
                                 groupName = Groups.getGroupByLine(dbName);
@@ -79,9 +79,11 @@ public class ParserNPC {
                     }
                     else if (str.startsWith("npcmaker_ex_begin")) {
                         periodOfDay = "none";
+                        eventName = "";
                         String nextLine;
                         String[] arrNpcmaker_ex_begin= str.split("\t");
                         territoryName = arrNpcmaker_ex_begin[1];
+
                         if (arrNpcmaker_ex_begin[4].contains("IsNight")){
                            int dayMarker =  Integer.parseInt(arrNpcmaker_ex_begin[4].replaceAll("[^0-9]",""));
 
@@ -92,6 +94,14 @@ public class ParserNPC {
                                break;
                                default: periodOfDay = "none";
                            }
+                        }
+
+                        if (arrNpcmaker_ex_begin[4].contains("[EventName]")){
+                            String[] eventNameArr = arrNpcmaker_ex_begin[4].replaceAll("[{}\\[\\]]", "").split("=");
+                            String eventPTSName = eventNameArr[2];
+                            eventName = Groups.getGroupByLine(eventPTSName);
+                            System.out.println(eventPTSName);
+                            System.out.println(eventName);
                         }
 
                         while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_ex_end")){
@@ -166,7 +176,7 @@ public class ParserNPC {
         if (arrNpc_begin[2].contains("nickname")){
             swap(arrNpc_begin, 2);
         }
-        npc_Name = arrNpc_begin[1].replace("[", "").replace("]", "").trim();
+        npc_Name = arrNpc_begin[1].replaceAll("[\\[\\]]", "").trim();
         npc_Id = getNPCId.getNPC_Id(arrNpc_begin[1]);
         String[] splitPos = arrNpc_begin[2].split("=");
 
