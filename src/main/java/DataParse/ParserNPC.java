@@ -35,7 +35,7 @@ public class ParserNPC {
     String npc_Name = "";
     String periodOfDay = "none";
     String territoryName = "";
-    String eventName = "";
+    String eventGroupName = "";
 
      public void parse(){
         getNPCId.getAllNPCID();
@@ -55,6 +55,7 @@ public class ParserNPC {
                     }
                     if (str.startsWith("npcmaker_begin")) {
                         periodOfDay = "none";
+                        eventGroupName = "";
                         String[] arrNpcmaker_begin = str.split("\t");
                         territoryName = arrNpcmaker_begin[1];
                         String nextLine;
@@ -79,7 +80,7 @@ public class ParserNPC {
                     }
                     else if (str.startsWith("npcmaker_ex_begin")) {
                         periodOfDay = "none";
-                        eventName = "";
+                        eventGroupName = "";
                         String nextLine;
                         String[] arrNpcmaker_ex_begin= str.split("\t");
                         territoryName = arrNpcmaker_ex_begin[1];
@@ -99,9 +100,9 @@ public class ParserNPC {
                         if (arrNpcmaker_ex_begin[4].contains("[EventName]")){
                             String[] eventNameArr = arrNpcmaker_ex_begin[4].replaceAll("[{}\\[\\]]", "").split("=");
                             String eventPTSName = eventNameArr[2];
-                            eventName = Groups.getGroupByLine(eventPTSName);
-                            System.out.println(eventPTSName);
-                            System.out.println(eventName);
+                            eventGroupName = Groups.getGroupByLine(eventPTSName);
+                            //System.out.println(eventPTSName);
+                            //System.out.println(eventGroupName);
                         }
 
                         while(!(nextLine = bufferedReader.readLine()).contains("npcmaker_ex_end")){
@@ -143,18 +144,21 @@ public class ParserNPC {
                  periodOfDay,
                  npc_Id,
                  npc_Name,
-                 territoryName);
+                 territoryName,
+                 eventGroupName);
      }
     private void callMassPointPattern(){
          massPointPattern.massPattern(
                  arrTerritoryList,
+                 groupName,
                  total,
                  respawnTime,
                  respawnRandTime,
                  periodOfDay,
                  npc_Id,
                  npc_Name,
-                 territoryName);
+                 territoryName,
+                 eventGroupName);
      }
 
     private void swap(String[] arr, int index){

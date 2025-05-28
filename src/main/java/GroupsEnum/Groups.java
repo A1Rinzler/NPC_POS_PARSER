@@ -86,13 +86,15 @@ public enum Groups {
             groupName = BENOM.getGroupName();}
         //семь печатей
         else if (dbName.equals("ssq_event")){
-            groupName = COMPETITIONSSQ.getGroupName();}
+            //groupName = COMPETITIONSSQ.getGroupName();
+            groupName = COMPETITIONSSQNULL.getGroupName();}
+        else if (dbName.equals("none")){
+            // = COMPETITIONSSQNOWINNER.getGroupName();
+            groupName = COMPETITIONSSQNULL.getGroupName();}
         else if (dbName.contains("dawn")){
             groupName = COMPETITIONSSQDAWN.getGroupName();}
         else if (dbName.contains("twilight")){
             groupName = COMPETITIONSSQDUCK.getGroupName();}
-        else if (dbName.equals("none")){
-            groupName = COMPETITIONSSQNOWINNER.getGroupName();}
 
         return groupName;
     }
