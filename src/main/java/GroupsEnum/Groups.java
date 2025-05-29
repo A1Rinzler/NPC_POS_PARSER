@@ -28,11 +28,13 @@ public enum Groups {
     BENOM("rune_castle_benom"),//rune_castle_benom dbname=[benom]
 
     //Seven Signs
-    COMPETITIONSSQ("competition"),  //ssq_event
-    COMPETITIONSSQDUCK("dusk_spawn"), //ssq_seal1_twilight
-    COMPETITIONSSQDAWN("dawn_spawn"), //ssq_seal1_dawn
-    COMPETITIONSSQNOWINNER("no_winner"), //ssq_seal1_none
-    COMPETITIONSSQNULL(""); //у оверов только 3 стадии, рассвет, закат и без группы. Без группы это период соревнования и без победителя.
+    COMPETITION_SSQ("competition"),  //ssq_event
+    WINNER_SSQ_DUCK("dusk_spawn"), //ssq_seal1_twilight
+    WINNER_SSQ_DAWN("dawn_spawn"), //ssq_seal1_dawn
+    SSQ_NO_WINNER("no_winner"), //ssq_seal1_none
+    COMPETITION_SSQ_NULL(""),//у оверов только 3 стадии, рассвет, закат и без группы. Без группы это период соревнования и без победителя.
+
+    EVENT_GATEKEEPER("event_gatekeeper");
 
 //элитные захватываемые клан холлы
 //    Fortress of Resistance            нету, обработать вручную                            // dion23_레지스탕스의요새_아지트전_2121;
@@ -55,6 +57,7 @@ public enum Groups {
 
     public static String getGroupByLine(String dbName) {
         String groupName="";
+        //осады замков
         if (dbName.contains("gludio_siege")){
             groupName = GLUDIO.getGroupName();
         } else if (dbName.contains("dion_siege")) {
@@ -77,7 +80,6 @@ public enum Groups {
         else if (dbName.contains("devastated")) {
             groupName = DEVASTATED.getGroupName();}
 
-
         //ивент новый год
         else if (dbName.contains("christmas")) {
             groupName = CHRISTMAS.getGroupName();}
@@ -87,14 +89,17 @@ public enum Groups {
         //семь печатей
         else if (dbName.equals("ssq_event")){
             //groupName = COMPETITIONSSQ.getGroupName();
-            groupName = COMPETITIONSSQNULL.getGroupName();}
+            groupName = COMPETITION_SSQ_NULL.getGroupName();}
         else if (dbName.equals("none")){
-            // = COMPETITIONSSQNOWINNER.getGroupName();
-            groupName = COMPETITIONSSQNULL.getGroupName();}
+            // = SSQNOWINNER.getGroupName();
+            groupName = COMPETITION_SSQ_NULL.getGroupName();}
         else if (dbName.contains("dawn")){
-            groupName = COMPETITIONSSQDAWN.getGroupName();}
+            groupName = WINNER_SSQ_DAWN.getGroupName();}
         else if (dbName.contains("twilight")){
-            groupName = COMPETITIONSSQDUCK.getGroupName();}
+            groupName = WINNER_SSQ_DUCK.getGroupName();}
+
+        else if (dbName.contains("event_gate")){
+            groupName = EVENT_GATEKEEPER.getGroupName();}
 
         return groupName;
     }
