@@ -19,7 +19,10 @@ public enum Groups {
 
     //Elite Clan Hall Siege
     DEVASTATED("devastated_castle_guards"), //    devastated_castle_guards,   //dbname=[devastated_334]
-
+    BANDIT("Bandit"),
+    WILD_BEAST("Wild Beast"),
+    DEAD("Dead"),
+    CHATEAU("Chateau"),
 
     //Christmas group
     CHRISTMAS("christmas"),//npcmaker_ex_begin  ai_parameters={[EventName]=[christmas]}
@@ -41,8 +44,8 @@ public enum Groups {
 //    Bandit Stronghold                 dbname=[tbb1] dbname=[tbf1]                         // oren15_산적단산채_아지트전_
 //    Devastated Castle                 dbname=[devastated_001]                             // aden05_파괴된성채_아지트전_2517;
 //    Wild Beast Reserve                dbname=[farmazit01]	                                // rune07_야수농장_아지트전_2115;
-//    Fortress of the Dead npc_begin	dbname=[RestlessAzit_086]                           // [rune11][망자의요새][아지트전]
-//    Rainbow Springs Chateau           dbname=[rainbow_azit_001] dbname=[farmazitfinal01]  // [godard06][레인보우스프링][아지트전] 2414
+//    Fortress of the Dead          	dbname=[RestlessAzit_086]                           // [rune11][망자의요새][아지트전]
+//    Rainbow Springs Chateau           dbname=[rainbow_azit_001]                           // [godard06][레인보우스프링][아지트전] 2414
 
 
     private String groupName;

@@ -55,7 +55,7 @@ public class ParserNPC {
                     }
                     if (str.startsWith("npcmaker_begin")) {
                         periodOfDay = "none";
-                        eventGroupName = "";
+                        //eventGroupName = "";
                         String[] arrNpcmaker_begin = str.split("\t");
                         territoryName = arrNpcmaker_begin[1];
                         String nextLine;

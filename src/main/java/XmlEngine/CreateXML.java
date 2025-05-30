@@ -173,7 +173,14 @@ public class CreateXML {
                   "[rune03_dominion2016_12]", "[rune03_dominion2016_13]", "[rune_dominion_fort01]" -> xmlName = "Rune_Dominion.xml";
              case "[schuttgart19_dominion2213_01]", "[schuttgart19_dominion2213_02]", "[schuttgart19_dominion2213_09]", "[schuttgart19_dominion2213_10]", "[schuttgart19_dominion2213_13]",
                   "[schuttgart19_dominion2213_14]", "[schuttgart19_dominion2213_15]", "[schuttgart19_dominion2213_27]", "[schuttgart19_dominion2213_28]", "[schuttgart_dominion_fort01]" -> xmlName = "Schuttgar_Dominion.xml";
-
+             case "[aden05_agit2517_01]", "[aden05_agit2517_02]", "[aden05_agit2517_03]", "[aden05_agit2517_04]", "[aden05_agit2517_05]", "[aden05_agit2517_06]", "[aden05_agit2517_07]",
+                  "[aden05_agit2517_08]", "[aden05_agit2517_09]", "[aden05_agit2517_10]", "[aden05_agit2517_11]", "[aden05_agit2517_12]" -> xmlName = "25_17_Devastated_Castle.xml";
+             case "[partisan_agit_2121_01]", "[partisan_agit_2121_02]", "[partisan_agit_2121_03]" -> xmlName = "21_21_Fortress_of_Resistance.xml";
+             case "banditsagit_2217_01]", "banditsagit_2217_02]" -> xmlName = "22_17_Bandit_Stronghold.xml";
+             case "[rune07_azit2115_01]", "[rune07_azit2115_02]", "[rune07_azit2115_03]", "[rune07_azit2115_04]", "[rune07_azit2115_05]", "[rune07_azit2115_06]", "[rune07_azit2115_07]" -> xmlName = "21_15_Wild_Beast_Reserve.xml";
+             case "[rune11_2117_01]", "[rune11_2117_02]", "[rune11_2117_03]", "[rune11_2117_04]", "[rune11_2117_05]", "[rune11_2117_06]", "[rune11_2117_07]", "[rune11_2117_08]", "[rune11_2117_09]",
+                  "[rune11_2117_10]", "[rune11_2117_11]", "[rune11_2117_12]", "[rune11_2117_13]"  -> xmlName = "21_17_Fortress of the Dead.xml";
+             case "[godard06_2414_01]", "[godard06_2414_02]", "[godard06_2414_21]", "[godard06_2414_22]", "[godard06_2414_31]", "[godard06_2414_32]", "[godard06_2414_41]", "[godard06_2414_42]" -> xmlName = "24_14_Rainbow_Springs_Chateau.xml";
              default -> {
                  if (str.contains("t21_24_boss")){
                      xmlName ="21_24_Zaken.xml";
