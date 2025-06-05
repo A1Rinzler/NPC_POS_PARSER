@@ -7,22 +7,24 @@ package GroupsEnum;
 
 public enum Groups {
     //Castle Siege
-    GLUDIO("gludio_castle_siege"),  //gludio_castle_siege, //dbname=[gludio_siege_001]
-    DION("dion_castle_siege"),  //dion_castle_siege, //dbname=[dion_siege_001]
-    GIRAN("giran_castle_siege"),    //giran_castle_siege, //dbname=[giran_siege_001]
-    OREN("oren_castle_siege"),//    oren_castle_siege, //dbname=[oren_siege_001]
-    INNADRIL("innadril_castle_siege"),//    innadril_castle_siege, //dbname=[innadrile_siege_001]
-    ADEN("aden_castle_siege"),//    aden_castle_siege, //dbname=[aden_siege_067]
-    GODDARD("goddard_castle_siege"),//    goddard_castle_siege, //dbname=[godad_siege_423]
-    RUNE("rune_castle_siege"),//    rune_castle_siege, //dbname=[rune_siege_001]
-    SCHUTTGART("schuttgart_castle_siege"),//    schuttgart_castle_siege; //dbname=[schuttgart_castle_001] территория и npcmaker без обозначения castle
+    GLUDIO("gludio_castle_siege"),
+    DION("dion_castle_siege"),
+    GIRAN("giran_castle_siege"),
+    OREN("oren_castle_siege"),
+    INNADRIL("innadril_castle_siege"),
+    ADEN("aden_castle_siege"),
+    GODDARD("goddard_castle_siege"),
+    RUNE("rune_castle_siege"),
+    SCHUTTGART("schuttgart_castle_siege"),
 
     //Elite Clan Hall Siege
-    DEVASTATED("devastated_castle_guards"), //    devastated_castle_guards,   //dbname=[devastated_334]
-    BANDIT("Bandit"),
-    WILD_BEAST("Wild Beast"),
-    DEAD("Dead"),
-    CHATEAU("Chateau"),
+    DEVASTATED("devastated_castle_guards"),
+    BANDIT("bandits_stronghold"),
+    WILD_BEAST("wild_beast_reserve"),
+    DEAD("fortress_of_dead_guards"),
+    CHATEAU("rainbow_springs"),
+    //Fortress of Resistance нету, обработать вручную dion23_레지스탕스의요새_아지트전_2121
+
 
     //Christmas group
     CHRISTMAS("christmas"),//npcmaker_ex_begin  ai_parameters={[EventName]=[christmas]}
@@ -36,17 +38,7 @@ public enum Groups {
     WINNER_SSQ_DAWN("dawn_spawn"), //ssq_seal1_dawn
     SSQ_NO_WINNER("no_winner"), //ssq_seal1_none
     COMPETITION_SSQ_NULL(""),//у оверов только 3 стадии, рассвет, закат и без группы. Без группы это период соревнования и без победителя.
-
     EVENT_GATEKEEPER("event_gatekeeper");
-
-//элитные захватываемые клан холлы
-//    Fortress of Resistance            нету, обработать вручную                            // dion23_레지스탕스의요새_아지트전_2121;
-//    Bandit Stronghold                 dbname=[tbb1] dbname=[tbf1]                         // oren15_산적단산채_아지트전_
-//    Devastated Castle                 dbname=[devastated_001]                             // aden05_파괴된성채_아지트전_2517;
-//    Wild Beast Reserve                dbname=[farmazit01]	                                // rune07_야수농장_아지트전_2115;
-//    Fortress of the Dead          	dbname=[RestlessAzit_086]                           // [rune11][망자의요새][아지트전]
-//    Rainbow Springs Chateau           dbname=[rainbow_azit_001]                           // [godard06][레인보우스프링][아지트전] 2414
-
 
     private String groupName;
 
@@ -80,9 +72,16 @@ public enum Groups {
         } else if (dbName.contains("schuttgart_castle")) {
             groupName = SCHUTTGART.getGroupName();}
         //элитные захватываемые клан холлы
+        else if (dbName.contains("tbb") || dbName.contains("tbf")) {
+            groupName = BANDIT.getGroupName();}
         else if (dbName.contains("devastated")) {
             groupName = DEVASTATED.getGroupName();}
-
+        else if (dbName.contains("farmazit")) {
+            groupName = WILD_BEAST.getGroupName();}
+        else if (dbName.contains("RestlessAzit")) {
+            groupName = DEAD.getGroupName();}
+        else if (dbName.contains("rainbow_azit")) {
+            groupName = CHATEAU.getGroupName();}
         //ивент новый год
         else if (dbName.contains("christmas")) {
             groupName = CHRISTMAS.getGroupName();}
