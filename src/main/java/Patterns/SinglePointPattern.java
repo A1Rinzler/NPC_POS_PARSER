@@ -31,7 +31,7 @@ public class SinglePointPattern {
                         .append("period_of_day=\"").append(periodOfDay).append("\"");
 
                 if ((eventGroupName.equals("event_gatekeeper") || eventGroupName.equals("class_master") || eventGroupName.equals("dusk_spawn")  || eventGroupName.equals("dawn_spawn"))){
-                    npcStringBuffer.append(" group=\"").append(eventGroupName).append("\"");;
+                    npcStringBuffer.append(" group=\"").append(eventGroupName).append("\"");
                 }
 
                 npcStringBuffer.append(">\n")
