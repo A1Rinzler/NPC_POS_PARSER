@@ -38,7 +38,10 @@ public class MassPointPattern {
             }
             else npcStringBuffer.append(">");
 
-            npcStringBuffer.append("\n").append("\t\t<territory>").append("\n");
+            npcStringBuffer.append("\n")
+                    .append("\t<!--").append(territoryName).append("-->")
+                    .append("\n")
+                    .append("\t\t<territory>").append("\n");
 
 
 //            if (!periodOfDay.isEmpty()){

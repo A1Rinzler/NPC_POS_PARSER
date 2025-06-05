@@ -35,6 +35,8 @@ public class SinglePointPattern {
                 }
 
                 npcStringBuffer.append(">\n")
+                        .append("\t<!--").append(territoryName).append("-->")
+                        .append("\n")
                         .append("\t\t<point x=\"").append(Npc_Pos.get(npcCoord++)).append("\" y=\"").append(Npc_Pos.get(npcCoord++)).append("\" ")
                         .append("z=\"").append(Npc_Pos.get(npcCoord++)).append("\" h=\"").append(Npc_Pos.get(npcCoord++)).append("\" />\n")
                         .append("\t\t<npc id=\"").append(npc_id).append("\" /><!--").append(npc_Name).append("-->").append("\n")
