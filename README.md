@@ -17,7 +17,10 @@
 
 ##### Используется лицензия Apache License v2.0
 
+##### Определяет день/ночь
+
 ##### Добавляет тег group для:
+Осада замков
 - gludio_castle_siege
 - dion_castle_siege
 - giran_castle_siege
@@ -28,11 +31,24 @@
 - rune_castle_siege
 - schuttgart_castle_siege
 
-##### Определяет день/ночь
+Группы захватываемых КХ (последующее ручное радактирование)
+- devastated_castle_guards
+- bandits_stronghold
+- wild_beast_reserve
+- fortress_of_dead_guards
+- rainbow_springs
 
-### ToDo
-- Группы захватываемых КХ
-- Группы катакомбы/некрополи
-- Новый Год ивент (christmas)
-- чекнуть что за группы еще имеются
-- добавить скрипт для запуска
+Группы катакомбы/некрополи(используются только dusk_spawn, dawn_spawn)
+- dusk_spawn
+- dawn_spawn
+- competition(период соревнований, у оверов не используется), закомментирован в коде
+- no_winner(без победителя, у оверов не используется), закомментирован в коде
+
+Ивенты
+- christmas
+- event_gatekeeper
+
+Остальное 
+ - rune_castle_benom
+
+
