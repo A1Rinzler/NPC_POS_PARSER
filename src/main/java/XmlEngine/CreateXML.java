@@ -21,8 +21,8 @@ import java.util.List;
 
 public class CreateXML {
     EncodingPattern xmlEncodingPattern = new EncodingPattern();
-    Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
-    //Path directoryPath = Paths.get("XML_Out");
+    //Path directoryPath = Paths.get("Npc_Pos_Parser/XML_Out");
+    Path directoryPath = Paths.get("XML_Out");
 
     List<String> directoryFiles = new ArrayList<>();
     String xmlFileName = "";
@@ -142,7 +142,7 @@ public class CreateXML {
                   "[lyonn07_18_14_07]", "[lyonn07_18_14_08]", "[lyonn07_18_14_09]", "[lyonn07_18_14_10]", "[lyonn07_18_14_11]", "[lyonn07_18_14_12]",
                   "[lyonn07_18_14_13]", "[lyonn07_18_14_14]", "[lyonn07_18_14_15]", "[lyonn07_18_14_16]", "[lyonn07_18_14_17]", "[lyonn07_18_14_18]",
                   "[lyonn07_18_14_19]", "[lyonn07_18_14_20]", "[lyonn07_18_14_21]", "[lyonn07_18_14_22]", "[lyonn07_18_14_23]" -> xmlName = "18_14.xml";
-
+//             раскомментировать, если решили закомментировать ивенты
 //             case "[20_18_net_cafe_event_1_01]", "[20_18_net_cafe_event_1_02]" -> xmlName = "20_18.xml";
 //             case "[20_22_net_cafe_event_1_01]", "[20_22_net_cafe_event_1_02]", "[20_22_net_cafe_event_1_03]" -> xmlName = "20_22.xml";
 //             case "[20_23_net_cafe_event_1_01]" -> xmlName = "20_23.xml";
@@ -182,6 +182,7 @@ public class CreateXML {
              case "[1710_olympiad1]", "[1710_olympiad2]", "[1710_olympiad3]", "[1710_olympiad4]", "[1710_olympiad5]", "[1710_olympiad6]", "[1710_olympiad7]", "[1710_olympiad8]", "[1710_olympiad9]",
                   "[1710_olympiad10]", "[1710_olympiad11]", "[1710_olympiad12]", "[1710_olympiad13]", "[1710_olympiad14]", "[1710_olympiad15]", "[1710_olympiad16]", "[1710_olympiad17]", "[1710_olympiad18]", "[1710_olympiad19]",
                   "[1710_olympiad20]", "[1710_olympiad21]", "[1710_olympiad22]" -> xmlName = "17_10_olympiad.xml";
+             //Ивенты
              case "[lyonn03_npc1814_lc01]", "[lyonn03_npc1814_lc02]", "[gludio08_npc1921_lc01]", "[gludio08_npc1921_lc02]", "[gludio08_npc1921_lc03]", "[oren09_npc2018_lc01]", "[oren09_npc2018_lc02]",
                   "[dion09_npc2022_lc01]", "[dion09_npc2022_lc02]", "[dion09_npc2022_lc03]", "[dion10_npc2023_lc01]", "[oren04_npc2119_lc01]", "[oren04_npc2119_lc02]", "[oren17_npc2219_lc01]",
                   "[oren17_npc2219_lc02]", "[oren17_npc2219_lc03]", "[giran11_npc2222_lc01]", "[giran11_npc2222_lc02]", "[giran11_npc2222_lc03]", "[giran11_npc2222_lc04]", "[schuttgart03_npc2312_lc01]",
@@ -223,7 +224,7 @@ public class CreateXML {
                   "[lyonn03_npc1814_sw01]", "[gludio25_npc1725_sw01]", "[gludio25_npc1725_sw02]", "[gludio06_npc1722_sw01]", "[schuttgart20_npc2213_sw01]", "[aden45_npc1619__sw01]" -> xmlName = "event_start_weapon.xml";
              case "[18_14_net_cafe_event_1_01]", "[18_14_net_cafe_event_1_02]", "[19_21_net_cafe_event_1_01]", "[19_21_net_cafe_event_1_02]", "[19_21_net_cafe_event_1_03]",
                   "[20_18_net_cafe_event_1_01]", "[20_18_net_cafe_event_1_02]", "[20_22_net_cafe_event_1_01]", "[20_22_net_cafe_event_1_02]", "[20_22_net_cafe_event_1_03]",
-                  "20_23_net_cafe_event_1_01]", "[21_19_net_cafe_event_1_01]", "[21_19_net_cafe_event_1_02]", "[22_19_net_cafe_event_1_01]", "[22_19_net_cafe_event_1_02]", "[22_19_net_cafe_event_1_03]",
+                  "[20_23_net_cafe_event_1_01]", "[21_19_net_cafe_event_1_01]", "[21_19_net_cafe_event_1_02]", "[22_19_net_cafe_event_1_01]", "[22_19_net_cafe_event_1_02]", "[22_19_net_cafe_event_1_03]",
                   "[22_22_net_cafe_event_1_01]", "[22_22_net_cafe_event_1_02]", "[22_22_net_cafe_event_1_03]", "[22_22_net_cafe_event_1_04]", "[23_12_net_cafe_event_1_01]", "[23_12_net_cafe_event_1_02]",
                   "[17_22_net_cafe_event_1_01]", "[17_22_net_cafe_event_1_02]", "[17_22_net_cafe_event_1_03]", "[23_20_net_cafe_event_1_01]", "[23_20_net_cafe_event_1_02]", "[23_20_net_cafe_event_1_03]",
                   "[17_25_net_cafe_event_1_01]", "[17_25_net_cafe_event_1_02]", "[24_18_net_cafe_event_1_01]", "[24_18_net_cafe_event_1_02]", "[23_24_net_cafe_event_1_01]", "[23_24_net_cafe_event_1_02]",
