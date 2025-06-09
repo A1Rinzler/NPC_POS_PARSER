@@ -8,7 +8,11 @@ import DataParse.ParserNPC;
 public class ParserLaunch {
 
     public static void main(String[] args) {
+       //long start = System.currentTimeMillis();
        ParserNPC parserNPC = new ParserNPC();
        parserNPC.parse();
+       //long stop = System.currentTimeMillis();
+       //System.out.println(stop - start);
+
     }
 }
