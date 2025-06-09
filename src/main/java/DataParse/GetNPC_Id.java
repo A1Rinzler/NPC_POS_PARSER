@@ -16,7 +16,7 @@ public class GetNPC_Id {
 
     //private final String npc_pch = "Npc_Pos_Parser/PTS_Scripts/npc_pch.txt";
 
-    private final String npc_pch = "PTS_Scripts/npc_pch.txt";
+    private final static String npc_pch = "PTS_Scripts/npc_pch.txt";
 
     public int getNPC_Id(String NPCName){
         return allNPCId.get(NPCName);
@@ -37,7 +37,8 @@ public class GetNPC_Id {
 
             bufferedReader.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("npc_pch.txt not found");
+            //throw new RuntimeException(e);
         }
     }
 }
