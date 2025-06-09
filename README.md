@@ -15,9 +15,9 @@
 ##### Есть простенький дебагер. Включается в debug.properties. Логирует нпцмейкер и имя нпц, чтобы посмотреть, где скрипт остановился.
 ##### Лог записывается в файл log.log
 
+### <code style="color : orangered">Если решили отдельно вставлять квадрат</code>
 
-
-##### <font color="#20B2AA">Если решили отдельно вставлять квадрат</font>
+##### <font color="orangered">Если решили отдельно вставлять квадрат</font>
 
 ##### <font color="#20B2AA">Начало: territory_begin</font>
 ##### <font color="#20B2AA">Конец: npcmaker_ex_end или npcmaker_end</font>
