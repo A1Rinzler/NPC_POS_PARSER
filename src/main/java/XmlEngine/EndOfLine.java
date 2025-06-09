@@ -54,6 +54,7 @@ public class EndOfLine {
                         directoryFiles.add(path.getFileName().toString());
                     }
                 });
+                checkFilesStream.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
