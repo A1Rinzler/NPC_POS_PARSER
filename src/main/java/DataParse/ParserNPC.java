@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * @author : Dmitrii Frolov, a.k.a. A1Rinzler
@@ -18,9 +19,10 @@ import java.util.List;
  **/
 
 public class ParserNPC {
-    private final String npcpos_file = "PTS_Scripts/npcpos.txt";
-    //final String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos_test.txt";
-
+    private final static String npcpos_file = "PTS_Scripts/npcpos.txt";
+    //private final static String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos_test.txt";
+    //private final static String npcpos_file = "Npc_Pos_Parser/PTS_Scripts/npcpos.txt";
+    Properties properties = new Properties();
     GetNPC_Id getNPCId = new GetNPC_Id();
     SinglePointPattern singlePointPattern = new SinglePointPattern();
     MassPointPattern massPointPattern = new MassPointPattern();
@@ -37,11 +39,22 @@ public class ParserNPC {
     String territoryName = "";
     String eventGroupName = "";
 
+    boolean debug;
+
      public void parse(){
         getNPCId.getAllNPCID();
+
          try {
              //BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream(npcpos_file)));//, StandardCharsets.UTF_16LE));
              BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream(npcpos_file), StandardCharsets.UTF_16LE));
+
+             //properties.load(new FileInputStream("Npc_Pos_Parser/debug.properties"));
+             properties.load(new FileInputStream("debug.properties"));
+
+             String debugKey = properties.getProperty("debug");
+             if (!debugKey.isEmpty()){
+             debug = Boolean.parseBoolean(debugKey);
+             }else debug = false;
 
              String str;
 
@@ -187,7 +200,9 @@ public class ParserNPC {
         String[] splitPos = arrNpc_begin[2].split("=");
 
         //быстро посмотреть, где стопорится парс
-        System.out.println(territoryName + " " + npc_Name);
+        if (debug){
+            System.out.println(territoryName + " " + npc_Name);
+        }
 
         //Бывает несколько координат с процентом спавна на точку. У оверов это не работает, берем первую точку.
         //Сделал, коммент оставлю, мож подправлю на стороне сервера процент появления на точке.
